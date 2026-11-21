@@ -4,7 +4,7 @@
 
 **Orientador:** Prof. Bruno Gomes (@brunogomesifrn) - NIC/IFRN
 
-**Colaboradores no desenvolvimento:** Aluno 1 (@aluno1), responsável pelo validador, e Aluno 2 (@aluno2), responsável pelo gerador de narrativas fictícias.
+**Colaboradores no desenvolvimento:** Samuel (@samuelmarinho10), responsável pelo conversor para JSON e pelo verificador do JSON, e Gleidson (@gleidsonxsz), responsável pelo gerador de narrativas fictícias.
 
 **Repositório:** https://github.com/nicifrn/mp_narrativas_catalogo
 
@@ -14,7 +14,7 @@
 
 **Projeto pai:** Narrativas, plataforma digital para registro, organização e difusão das narrativas populares do Rio Grande do Norte (resumo em [`docs/projeto_narrativas.md`](projeto_narrativas.md)).
 
-> **Leia este documento inteiro na segunda-feira, 23/11, antes de começar.** Ele diz tudo o que você vai programar, sprint por sprint. As *issues* do GitHub são o resumo de cada semana e apontam para as seções daqui. Se uma *issue* e este documento parecerem dizer coisas diferentes, **vale este documento**.
+> **Leia este documento inteiro na segunda-feira, 23/11, antes de começar.** Ele diz tudo o que você vai programar, sprint por sprint. **Não há *issues* no GitHub: este documento é o seu roteiro.** Siga as sprints na ordem e marque as caixas da "Entrega da sprint" à medida que for terminando.
 
 ---
 
@@ -28,7 +28,7 @@
 - [6. Como trabalhar no repositório](#fluxo-git)
 - [7. A estrutura de pastas](#estrutura)
 - [Sprint 1 - Formato da planilha e estrutura do repositório](#sprint-1)
-- [Sprint 2 - Catálogo, conversor e estatísticas](#sprint-2)
+- [Sprint 2 - Catálogo, validador e estatísticas](#sprint-2)
 - [Sprint 3 - Integração e fechamento](#sprint-3)
 - [8. Riscos e planos B](#riscos)
 
@@ -45,18 +45,19 @@ A pergunta que o trabalho responde é:
 
 > **Como organizar e validar um conjunto de dados de narrativas populares do RN para que ele sirva de base confiável ao acervo digital do projeto Narrativas?**
 
-E você vai **medir**:
+O RCC é um **relato do que você fez no projeto**. Nos Resultados, você mostra o que foi produzido, com números simples:
 
-| O que é medido | De onde vem |
+| O que você relata | De onde vem |
 |---|---|
-| Distribuição do catálogo por tipo, público, mesorregião e licença | `estatisticas.py` (você) |
-| Completude: quantos % de cada coluna opcional ficaram preenchidos | `estatisticas.py` (você) |
-| Quantos erros a planilha real tinha antes da correção, e de que tipo | `validar.py` (Aluno 1) rodado na sua planilha |
-| Quantos dos erros inseridos de propósito o validador detectou | `gerar_fake.py` (Aluno 2) + `validar.py` + `comparar.py` (você) |
+| O formato da planilha | `docs/formato_planilha.md` (você) |
+| Quantas narrativas, de quantos municípios, e como ficaram por tipo e por mesorregião | `estatisticas.py` (você) |
+| Quantos erros a planilha real tinha antes da correção, e quais | `validar.py` (você) rodado na sua planilha |
+| Se o validador encontrou os erros inseridos de propósito nas bases fictícias | `gerar_fake.py` (Gleidson) + `validar.py` (você) |
+| O catálogo em JSON, conferido | `converter.py` e `verificar_json.py` (Samuel) |
 
 Guarde esta frase, porque ela vale para o código e para o texto:
 
-> O seu trabalho **não é** "fiz uma planilha de narrativas". O seu trabalho é **"defini o formato, construí e validei o primeiro conjunto de dados do acervo, e mostrei com números como ele ficou e quanto o validador é confiável"**.
+> O seu trabalho **não é** "fiz uma planilha de narrativas". O seu trabalho é **"defini o formato, construí e validei o primeiro conjunto de dados do acervo do projeto Narrativas"**.
 
 ---
 
@@ -65,13 +66,13 @@ Guarde esta frase, porque ela vale para o código e para o texto:
 
 | Quem | Faz | Arquivos que só ele mexe |
 |---|---|---|
-| **Ítalo** | Define o formato, monta a planilha com narrativas reais, converte para JSON, gera as estatísticas, integra o trabalho dos colegas e escreve o RCC | `docs/formato_planilha.md`, `dados/modelo.csv`, `dados/narrativas.csv`, `dados/narrativas.json`, `scripts/converter.py`, `scripts/estatisticas.py`, `scripts/comparar.py`, `README.md`, `.gitignore`, `requirements.txt` |
-| **Aluno 1** | Programa o validador da planilha | `scripts/validar.py`, `dados/teste_validador.csv` |
-| **Aluno 2** | Programa o gerador de narrativas fictícias | `scripts/gerar_fake.py` |
+| **Ítalo** | Define o formato, monta a planilha com narrativas reais, programa o validador e as estatísticas, integra o trabalho dos colegas e escreve o RCC | `docs/formato_planilha.md`, `dados/modelo.csv`, `dados/narrativas.csv`, `dados/narrativas.json`, `dados/teste_validador.csv`, `scripts/validar.py`, `scripts/estatisticas.py`, `README.md`, `.gitignore`, `requirements.txt` |
+| **Samuel** | Programa o conversor de CSV para JSON e o verificador, que confere se o JSON saiu igual ao CSV | `scripts/converter.py`, `scripts/verificar_json.py`, `dados/teste_conversor.csv`, `dados/teste_conversor.json`, `dados/teste_conversor_estragado.json` |
+| **Gleidson** | Programa o gerador de narrativas fictícias | `scripts/gerar_fake.py` |
 
 **Cada um mexe só nos seus arquivos.** Assim ninguém atrapalha ninguém e não há conflito no Git.
 
-**Você não depende dos colegas.** O formato já está fechado na [seção 4](#formato), então os três começam no mesmo dia. Se o validador ou o gerador atrasarem, o seu trabalho continua (veja a [seção 8](#riscos)).
+**Você não depende dos colegas.** O formato já está fechado na [seção 4](#formato), então os três começam no mesmo dia. Se o conversor ou o gerador atrasarem, o seu trabalho continua (veja a [seção 8](#riscos)).
 
 Os planos dos colegas estão em [`docs/01_italo_v2_aluno_1.md`](01_italo_v2_aluno_1.md) e [`docs/01_italo_v2_aluno_2.md`](01_italo_v2_aluno_2.md). **Leia os dois** na Sprint 1: você vai integrar o que eles fizerem, então precisa saber o que cada programa recebe e o que devolve.
 
@@ -110,7 +111,7 @@ Leia a lei na fonte oficial, os dois artigos inteiros: http://www.planalto.gov.b
 <a id="formato"></a>
 ## 4. O formato da planilha (o contrato da equipe)
 
-Este é o formato que os três vão usar. O validador lê este formato, o gerador escreve neste formato e você preenche este formato. **Os nomes das colunas, a ordem e as listas de valores não mudam depois de 24/11.** Se você mudar uma coluna, os dois colegas refazem o trabalho.
+Este é o formato que os três vão usar. Você preenche e valida este formato, o conversor do Samuel lê este formato e o gerador do Gleidson escreve neste formato. **Os nomes das colunas, a ordem e as listas de valores não mudam depois de 24/11.** Se você mudar uma coluna, os dois colegas refazem o trabalho.
 
 O que você pode fazer na Sprint 1 é **documentar** este formato (explicar e justificar cada coluna) e **acrescentar colunas opcionais no fim**, se achar necessário depois de olhar o protótipo da plataforma.
 
@@ -146,7 +147,7 @@ O que você pode fazer na Sprint 1 é **documentar** este formato (explicar e ju
 
 ### 4.3 Os arquivos de erros (validador e gerador)
 
-O validador do Aluno 1 grava os erros que encontrou, e o gerador do Aluno 2 grava os erros que inseriu de propósito (o **gabarito**). Os dois usam o **mesmo formato**, para que você possa comparar os dois na Sprint 3:
+O seu validador grava os erros que encontrou, e o gerador do Gleidson grava os erros que inseriu de propósito (o **gabarito**). Os dois usam o **mesmo formato**, para que você possa comparar os dois na Sprint 3:
 
 ```
 linha,coluna,erro
@@ -162,8 +163,10 @@ linha,coluna,erro
 | `fora_da_faixa` | `ano_fonte` menor que 1500 ou maior que 2026 |
 | `fora_da_lista` | `tipo`, `publico`, `mesorregiao` ou `licenca` com valor que não está na lista |
 | `repetido` | `id` que já apareceu em outra linha |
-| `quantidade_trechos` | `texto` com menos de 2 ou mais de 3 trechos |
-| `sem_aspas` | `texto` com algum trecho que não começa ou não termina com aspas |
+
+O gerador do Gleidson insere só três desses tipos: `vazio`, `nao_inteiro` e `fora_da_lista`.
+
+A regra da coluna `texto` (de 2 a 3 trechos, entre aspas) **não** é conferida pelo validador: você confere à mão, ao preencher. Ela entra nas limitações do RCC.
 
 ---
 
@@ -173,15 +176,15 @@ linha,coluna,erro
 | Sprint | Período | Desenvolvimento | Escrita (ver o plano de escrita) |
 |---|---|---|---|
 | 1 | 23/11 a 26/11 | Formato documentado e estrutura do repositório (**PR até terça, 24/11**). Primeiras 10 narrativas na planilha | **Entrega 1:** Introdução e Objetivos (26/11) |
-| 2 | 27/11 a 03/12 | 20 narrativas (até 01/12), `converter.py` e `estatisticas.py` (**PR até 03/12**) | **Entrega 2:** Referencial Teórico e Metodologia (03/12) |
-| 3 | 04/12 a 10/12 | Integração com o validador e o gerador, `comparar.py` e `README.md` (**PR até segunda, 07/12**) | **Entrega 3:** Resultados (08/12). **Entrega 4:** Conclusão, Resumo, Título e revisão (10/12) |
+| 2 | 27/11 a 03/12 | 20 narrativas (até 01/12), `validar.py` e `estatisticas.py` (**PR até 03/12**) | **Entrega 2:** Referencial Teórico e Metodologia (03/12) |
+| 3 | 04/12 a 10/12 | Integração com o conversor e o gerador, `resumo.md` e `README.md` (**PR até segunda, 07/12**) | **Entrega 3:** Resultados (08/12). **Entrega 4:** Conclusão, Resumo, Título e revisão (10/12) |
 
 **Tudo termina em 10/12.**
 
 **Datas que não podem escorregar:**
 
 - **24/11 (terça):** o formato documentado entra no repositório. Os colegas precisam dele para conferir o que estão fazendo.
-- **01/12 (terça):** as 20 narrativas estão na planilha. Sem elas não há estatística, e sem estatística não há Resultados.
+- **01/12 (terça):** as 20 narrativas estão na planilha. Sem elas não há catálogo para validar nem para descrever nos Resultados.
 - **04/12 (sexta):** a integração é feita **neste dia**. Ela leva umas duas horas: é só rodar os programas na ordem certa e guardar as saídas.
 - **07/12 (segunda):** o código está fechado. De terça a quinta, você só escreve.
 
@@ -200,13 +203,13 @@ linha,coluna,erro
 
 As suas *branches* já têm nome:
 
-| Sprint | *Branch* | *Issue* |
-|---|---|---|
-| 1 | `feature/formato-planilha` | #1 |
-| 2 | `feature/catalogo-conversor` | #3 |
-| 3 | `feature/integracao` | #5 |
+| Sprint | *Branch* |
+|---|---|
+| 1 | `feature/formato-planilha` |
+| 2 | `feature/catalogo-validador` |
+| 3 | `feature/integracao` |
 
-As *issues* de escrita são a #2, a #4 e a #6. Elas não têm *branch*: a escrita acontece no Google Drive.
+A escrita não tem *branch*: ela acontece no Google Drive (veja o plano de escrita).
 
 ### 6.2 O ciclo de cada sprint
 
@@ -223,7 +226,7 @@ git checkout -b feature/nome-da-branch
 ```
 git status
 git add .
-git commit -m "feat: adiciona conversor de CSV para JSON"
+git commit -m "feat: confere campos obrigatórios vazios"
 git push
 ```
 
@@ -248,19 +251,19 @@ Na primeira vez que der `git push` em uma *branch* nova, o Git responde com um e
 
 1. Confira se tudo foi enviado: `git status` deve dizer `nothing to commit, working tree clean`.
 2. No GitHub, abra o repositório. Vai aparecer uma faixa amarela com o botão **Compare & pull request**. Se não aparecer: aba **Pull requests → New pull request**, com **base: `develop`** e **compare: a sua *branch***.
-3. A descrição já vem com um modelo. Preencha **Objetivo**, **O que foi feito**, **Como testar** (os comandos e a saída copiada do terminal) e, em **Issue**, `Closes #N` com o número da sua *issue*.
+3. A descrição já vem com um modelo. Preencha **Sprint**, **Objetivo**, **O que foi feito** e **Como testar** (os comandos e a saída copiada do terminal).
 4. Em **Reviewers**, marque `brunogomesifrn`.
-5. Na *issue*, comente: `@brunogomesifrn entrega da Sprint N pronta para revisão - PR #X`.
+5. No grupo da equipe, avise: `Sprint N pronta para revisão - PR #X`.
 
-**Você não faz o *merge* do seu próprio PR.** Eu reviso e integro. Se eu pedir ajustes, faça na mesma *branch* (o PR se atualiza sozinho) e comente de novo na *issue*.
+**Você não faz o *merge* do seu próprio PR.** Eu reviso e integro. Se eu pedir ajustes (nos comentários do PR), faça na mesma *branch*: o PR se atualiza sozinho. Responda cada comentário dizendo o que fez.
 
-**Você também é revisor.** Os PRs do Aluno 1 e do Aluno 2 vão marcar você. Leia o código deles e comente o que não seguir o formato da [seção 4](#formato). O *merge* é meu.
+**Você também é revisor.** Os PRs do Samuel e do Gleidson vão marcar você. Leia o código deles e comente o que não seguir o formato da [seção 4](#formato). O *merge* é meu.
 
 ### 6.5 Regras de ouro
 
-- **Entregue no prazo, mesmo incompleto.** Na *issue*, diga o que faltou.
-- **Travou mais de 40 minutos no mesmo erro? Pare e peça ajuda.** Comente na *issue* da semana, me marcando, com: o que você estava tentando fazer, o comando que rodou e **a mensagem de erro inteira, copiada e colada**.
-- **Rode tudo a partir da raiz do repositório:** `python scripts\converter.py ...`, e não de dentro da pasta `scripts`.
+- **Entregue no prazo, mesmo incompleto.** Na descrição do PR, diga o que faltou.
+- **Travou mais de 40 minutos no mesmo erro? Pare e peça ajuda.** Mande mensagem no grupo da equipe, me marcando, com: o que você estava tentando fazer, o comando que rodou e **a mensagem de erro inteira, copiada e colada**.
+- **Rode tudo a partir da raiz do repositório:** `python scripts\validar.py ...`, e não de dentro da pasta `scripts`.
 - **Diário (`docs/diario.md`):** no fim de cada sprint, 3 linhas. Leva cinco minutos e escreve a sua Conclusão por você:
 
   ```
@@ -286,15 +289,16 @@ mp_narrativas_catalogo/
 ├── dados/
 │   ├── modelo.csv                 ← Ítalo, Sprint 1
 │   ├── narrativas.csv             ← Ítalo, Sprint 2
-│   ├── narrativas.json            ← Ítalo, Sprint 2 (gerado pelo converter.py)
-│   ├── teste_validador.csv        ← Aluno 1
+│   ├── narrativas.json            ← Ítalo, Sprint 3 (gerado pelo converter.py)
+│   ├── teste_validador.csv        ← Ítalo, Sprint 2
+│   ├── teste_conversor.csv        ← Samuel (e os dois .json de teste dele)
 │   └── fake/                      ← saídas do gerador (NÃO vão para o Git)
 ├── scripts/
-│   ├── validar.py                 ← Aluno 1
-│   ├── gerar_fake.py              ← Aluno 2
-│   ├── converter.py               ← Ítalo, Sprint 2
+│   ├── validar.py                 ← Ítalo, Sprint 2
 │   ├── estatisticas.py            ← Ítalo, Sprint 2
-│   └── comparar.py                ← Ítalo, Sprint 3
+│   ├── converter.py               ← Samuel
+│   ├── verificar_json.py          ← Samuel
+│   └── gerar_fake.py              ← Gleidson
 ├── resultados/                    ← gráficos, tabelas e relatórios de erros
 ├── docs/
 │   ├── 01_italo_v2_narrativas_desenvolvimento.md   ← este documento
@@ -319,7 +323,7 @@ mp_narrativas_catalogo/
 <a id="sprint-1"></a>
 # Sprint 1: 23/11 a 26/11 - Formato da planilha e estrutura do repositório
 
-**Branch:** `feature/formato-planilha` · **Issue:** #1 · **PR até:** terça, 24/11
+**Branch:** `feature/formato-planilha` · **PR até:** terça, 24/11
 
 **O que você vai entregar:** o repositório organizado, o formato da planilha documentado em `docs/formato_planilha.md`, o `dados/modelo.csv` com 3 narrativas reais, a planilha no Google Planilhas com as listas de valores travadas e, até quinta, as 10 primeiras narrativas preenchidas.
 
@@ -388,7 +392,7 @@ mp_narrativas_catalogo/
    dados/fake/
    ```
 
-   A pasta `dados/fake/` fica de fora porque o gerador do Aluno 2 cria arquivos com milhares de linhas, que podem ser gerados de novo a qualquer momento.
+   A pasta `dados/fake/` fica de fora porque o gerador do Gleidson cria arquivos com milhares de linhas, que podem ser gerados de novo a qualquer momento.
 
 8. O `README.md` já existe na raiz do repositório: ele explica o trabalho e tem os links para os planos dos três. **Não apague nem substitua.** Nesta sprint, só acrescente, na seção "Documentos de apoio", uma linha com o link para o `docs/formato_planilha.md` quando ele for criado. A seção "Como rodar" você completa na Sprint 3.
 
@@ -459,9 +463,9 @@ mp_narrativas_catalogo/
     - Deixe a coluna G (`texto`) mais larga e com quebra de linha automática, para ler os trechos inteiros: selecione a coluna G → **Formatar → Ajuste de texto → Quebrar**.
     - **Trave as listas.** Selecione a coluna C inteira (clique na letra **C**), vá em **Dados → Validação de dados → Adicionar regra**. Em **Critérios**, escolha **Menu suspenso** e cadastre um valor por item: `lenda`, `conto`, `causo`, `mito`, `cordel`. Em **Opções avançadas**, marque **Rejeitar a entrada**. Clique em **Concluído**. Faça o mesmo para `publico` (D), `mesorregiao` (F) e `licenca` (L).
     - A regra também vai valer para a célula do cabeçalho e vai marcá-la como inválida. Isso não atrapalha: ignore o aviso na linha 1.
-    - Compartilhe a planilha comigo como **Leitor** (botão **Compartilhar**, com o e-mail que eu deixar em um comentário na *issue* #1).
+    - Compartilhe a planilha comigo como **Leitor** (botão **Compartilhar**, com o e-mail que eu passar no grupo da equipe).
 
-    O menu suspenso evita erro de digitação na planilha real. Registre isso no diário: na Sprint 3, quando o validador rodar na sua planilha, ele vai achar poucos erros nessas colunas, e a explicação é essa trava.
+    O menu suspenso evita erro de digitação na planilha real. Registre isso no diário: na Sprint 3, quando o seu validador rodar na planilha, ele vai achar poucos erros nessas colunas, e a explicação é essa trava.
 
 14. Preencha **3 narrativas reais** na planilha (veja "Onde pesquisar" no passo 17) e baixe como CSV: **Arquivo → Fazer download → Valores separados por vírgula (.csv)**. O arquivo vem com um nome como `Catálogo de narrativas do RN - Página1.csv`. Mova para a pasta `dados/` do repositório e renomeie para `modelo.csv`.
 
@@ -488,7 +492,7 @@ mp_narrativas_catalogo/
     git push
     ```
 
-    Abra o PR para a `develop` com `Closes #1` (veja a [seção 6.4](#fluxo-git)). Avise os colegas na *issue* de cada um que o formato está no PR.
+    Abra o PR para a `develop` (veja a [seção 6.4](#fluxo-git)). Avise os colegas no grupo da equipe que o formato está no PR.
 
 **Quarta e quinta, 25 e 26/11: as primeiras 10 narrativas**
 
@@ -550,7 +554,7 @@ mp_narrativas_catalogo/
 
 ### Entrega da sprint
 
-- [ ] PR para a `develop` com `Closes #1`, até **24/11**
+- [ ] PR para a `develop` até **24/11**
 - [ ] `docs/formato_planilha.md` com as 12 colunas, a justificativa de cada uma e a explicação de cada valor das listas
 - [ ] `dados/modelo.csv` com o cabeçalho e 3 narrativas reais
 - [ ] Planilha no Google com menu suspenso nas 4 colunas de lista, compartilhada comigo
@@ -561,16 +565,16 @@ mp_narrativas_catalogo/
 
 - **Acentos estranhos no CSV** (`CaicÃ³`): o arquivo foi aberto ou salvo no Excel, ou foi lido sem `encoding="utf-8"`. Baixe de novo do Google Planilhas e abra só no VS Code.
 - **`KeyError: 'id'`** ao ler o CSV: o nome da coluna no cabeçalho está diferente (maiúscula, espaço no fim, acento). Corrija na planilha e baixe de novo.
-- **Resumo copiado da fonte:** é plágio, mesmo com a fonte citada. Escreva com as suas palavras.
+- **Trecho reescrito ou resumido:** os trechos são copiados **exatamente** como estão na fonte, entre aspas. Se você mudou palavras, deixou de ser citação.
 
 ---
 
 <a id="sprint-2"></a>
-# Sprint 2: 27/11 a 03/12 - Catálogo, conversor e estatísticas
+# Sprint 2: 27/11 a 03/12 - Catálogo, validador e estatísticas
 
-**Branch:** `feature/catalogo-conversor` · **Issue:** #3 · **PR até:** quinta, 03/12
+**Branch:** `feature/catalogo-validador` · **PR até:** quinta, 03/12
 
-**O que você vai entregar:** a planilha com 20 narrativas no repositório (`dados/narrativas.csv`), o `converter.py`, que transforma a planilha em `dados/narrativas.json`, e o `estatisticas.py`, que gera as tabelas e os gráficos do catálogo.
+**O que você vai entregar:** a planilha com 20 narrativas no repositório (`dados/narrativas.csv`), o `validar.py`, que confere a planilha e grava os erros encontrados, e o `estatisticas.py`, que conta as narrativas e faz dois gráficos.
 
 ### Passo a passo
 
@@ -579,256 +583,251 @@ mp_narrativas_catalogo/
    ```
    git checkout develop
    git pull
-   git checkout -b feature/catalogo-conversor
+   git checkout -b feature/catalogo-validador
    ```
 
-2. **Até terça, 01/12:** complete a planilha até **20 narrativas**, do mesmo jeito da Sprint 1 (passos 17 a 19). Em paralelo, programe o conversor (passos 3 a 7): uma hora por dia de programação e o resto em narrativas.
+2. **Até terça, 01/12:** complete a planilha até **20 narrativas**, do mesmo jeito da Sprint 1 (passos 17 a 19). Em paralelo, programe o validador (passos 3 a 9): uma hora por dia de programação e o resto em narrativas.
 
-3. **O conversor (`scripts/converter.py`).** Ele recebe dois nomes de arquivo, lê o CSV e grava o JSON:
+**O validador (`scripts/validar.py`)**
+
+3. **O arquivo de teste.** Antes de programar, crie uma planilha pequena em que **você já sabe** onde está cada erro. É com ela que você testa o validador o tempo todo.
+
+   1. No Google Planilhas, crie uma planilha nova chamada `Teste do validador`, com os 12 nomes das colunas na linha 1.
+   2. Na linha 2, preencha uma narrativa **sem nenhum erro** (pode copiar uma do seu catálogo).
+   3. Copie a linha 2 para as linhas 3 a 9, troque o `id` de cada uma (2, 3, 4...) e estrague **uma coluna por linha**:
+
+      | Linha da planilha | O erro que você coloca | O validador deve dizer |
+      |---|---|---|
+      | 3 | `titulo` vazio | `3,titulo,vazio` |
+      | 4 | `ano_fonte` = `mil novecentos` | `4,ano_fonte,nao_inteiro` |
+      | 5 | `ano_fonte` = `3000` | `5,ano_fonte,fora_da_faixa` |
+      | 6 | `tipo` = `historia` | `6,tipo,fora_da_lista` |
+      | 7 | `licenca` vazia | `7,licenca,vazio` |
+      | 8 | `id` igual ao da linha 2 | `8,id,repetido` |
+      | 9 | `mesorregiao` = `seridó` | `9,mesorregiao,fora_da_lista` |
+
+      Lembre: o cabeçalho é a linha 1. Se você fez a planilha de teste copiando a do catálogo, ela veio com o menu suspenso: tire (**Dados → Validação de dados →** lixeira em cada regra), senão o Google não aceita `historia` nem `seridó`.
+
+   4. Baixe como CSV, mova para `dados/` e renomeie para `teste_validador.csv`. Copie a tabela acima para a descrição do PR: é a "resposta esperada".
+
+4. **O que o validador faz.** Você roda assim:
 
    ```
-   python scripts\converter.py dados\modelo.csv dados\modelo.json
+   python scripts\validar.py dados\teste_validador.csv
    ```
 
-   O programa precisa:
+   E ele:
 
-   1. ler os dois nomes de arquivo que vieram no comando;
-   2. ler o CSV linha por linha, cada linha como um dicionário;
-   3. converter cada linha:
-      - `id` e `ano_fonte` viram **número inteiro** (`ano_fonte` vazio vira `None`);
-      - `palavras_chave` vira uma **lista** de textos (`"lobisomem; sertão"` vira `["lobisomem", "sertão"]`; vazia vira lista vazia `[]`);
-      - qualquer outra coluna opcional vazia (`url_fonte`) vira `None`;
-      - `texto` fica **como está**, um texto só, com os trechos, as aspas e o ` | `. A coluna foi pensada para receber, no futuro, o texto completo das narrativas cujos direitos permitirem, e o JSON precisa continuar servindo quando isso acontecer;
-   4. juntar todas as narrativas em uma lista;
-   5. gravar a lista no arquivo JSON;
-   6. mostrar na tela quantas narrativas foram convertidas.
+   1. pega o nome do arquivo que veio no comando;
+   2. confere se o cabeçalho tem as 12 colunas certas, na ordem certa. Se não tiver, avisa e para;
+   3. confere cada linha com as **5 regras** da [seção 4.3](#formato): `vazio`, `nao_inteiro`, `fora_da_faixa`, `fora_da_lista` e `repetido`;
+   4. mostra cada erro na tela (`Linha 3, coluna titulo: vazio`) e, no fim, quantas linhas leu e quantos erros encontrou;
+   5. grava os erros em `resultados/erros_<nome do arquivo>.csv`, no formato `linha,coluna,erro`.
 
-4. **As peças que você vai usar.** Pesquise cada uma na documentação do Python em português: https://docs.python.org/pt-br/3/library/csv.html, https://docs.python.org/pt-br/3/library/json.html e https://docs.python.org/pt-br/3/library/sys.html.
+   **Um erro por coluna, no máximo.** Coluna obrigatória vazia é só `vazio`: não confira mais nada nela. Ano que não é inteiro é só `nao_inteiro`: não confira a faixa. Coluna opcional vazia (`ano_fonte`, `url_fonte`, `palavras_chave`) **não** é erro. Espaços sobrando no começo ou no fim (`" lenda "`) também não: tire com `.strip()` antes de conferir.
 
-   Os nomes de arquivo que vêm no comando ficam na lista `sys.argv`. A posição 0 é o nome do próprio programa:
+5. **As peças que você vai usar.** Pesquise cada uma na documentação do Python em português: https://docs.python.org/pt-br/3/library/csv.html, https://docs.python.org/pt-br/3/library/sys.html e https://docs.python.org/pt-br/3/tutorial/errors.html#handling-exceptions.
+
+   O nome do arquivo que vem no comando fica na lista `sys.argv`. A posição 0 é o próprio programa:
 
    ```python
    import sys
-   # python scripts\converter.py dados\modelo.csv dados\modelo.json
-   # sys.argv[0] -> "scripts\converter.py"
-   # sys.argv[1] -> "dados\modelo.csv"
-   # sys.argv[2] -> "dados\modelo.json"
-   ```
 
-   Se a pessoa esquecer de passar os nomes, avise e pare:
+   # python scripts\validar.py dados\teste_validador.csv
+   # sys.argv[0] -> "scripts\validar.py"
+   # sys.argv[1] -> "dados\teste_validador.csv"
 
-   ```python
-   if len(sys.argv) != 3:
-       print("Uso: python scripts\\converter.py ENTRADA.csv SAIDA.json")
+   if len(sys.argv) != 2:
+       print("Uso: python scripts\\validar.py ARQUIVO.csv")
        sys.exit(1)
    ```
 
-   Ler o CSV com cada linha como dicionário:
+   O formato vira código em constantes no começo do programa:
 
    ```python
-   with open(caminho_csv, encoding="utf-8") as arquivo:
+   COLUNAS = ["id", "titulo", "tipo", "publico", "municipio", "mesorregiao",
+              "texto", "palavras_chave", "fonte", "url_fonte", "ano_fonte", "licenca"]
+
+   OBRIGATORIAS = ["id", "titulo", "tipo", "publico", "municipio",
+                   "mesorregiao", "texto", "fonte", "licenca"]
+
+   LISTAS = {
+       "tipo": {"lenda", "conto", "causo", "mito", "cordel"},
+       "publico": {...},
+       "mesorregiao": {...},
+       "licenca": {...},
+   }
+
+   ANO_MINIMO = 1500
+   ANO_MAXIMO = 2026
+   ```
+
+   Ler o CSV, conferir o cabeçalho e numerar as linhas a partir de 2 (o `enumerate` com `start=2`):
+
+   ```python
+   with open(caminho, encoding="utf-8") as arquivo:
        leitor = csv.DictReader(arquivo)
-       for linha in leitor:
-           # linha é um dicionário: linha["titulo"], linha["ano_fonte"]...
+       if leitor.fieldnames != COLUNAS:
+           print("Cabeçalho diferente do formato.")
+           print("Esperado:", COLUNAS)
+           print("Encontrado:", leitor.fieldnames)
+           sys.exit(1)
+       for numero, linha in enumerate(leitor, start=2):
+           # numero é 2, 3, 4...  linha é um dicionário: linha["titulo"]
            ...
    ```
 
-   Texto vazio em Python é "falso". Isso ajuda nas conversões:
+   Saber se um texto é número inteiro: tente converter; se não der, o Python lança um `ValueError`:
 
    ```python
-   texto = linha["ano_fonte"].strip()
-   ano = int(texto) if texto else None
+   try:
+       ano = int(valor)
+   except ValueError:
+       erros.append((numero, "ano_fonte", "nao_inteiro"))
    ```
 
-   Separar as palavras-chave e tirar os espaços (isso se chama *list comprehension*; pesquise "list comprehension python" se não conhecer):
+   Teste no terminal do Python `int("1950")`, `int("mil")` e `int("19.5")` para ver o que acontece em cada caso.
+
+   Achar `id` repetido: um conjunto com os `id` já vistos, criado **antes** do `for` das linhas. Confira se o `id` já está no conjunto e **só depois** acrescente; senão, todo `id` aparece como repetido.
+
+   Guarde os erros em uma lista de tuplas `(linha, coluna, erro)`, e não só mostre na tela: a mesma lista vai para o relatório.
+
+6. **Organize em funções**, uma por regra. Um esqueleto (os comentários dizem o que fazer; o código é seu):
 
    ```python
-   partes = linha["palavras_chave"].split(";")
-   palavras = [p.strip() for p in partes if p.strip()]
+   def conferir_vazios(numero, linha, erros): ...      # percorra OBRIGATORIAS com um for
+   def conferir_inteiros(numero, linha, erros): ...    # id e ano_fonte, e a faixa do ano
+   def conferir_listas(numero, linha, erros): ...      # percorra LISTAS.items()
+   def conferir_repetido(numero, linha, ids_vistos, erros): ...
+   def validar(caminho): ...                           # devolve (total_de_linhas, erros)
+   def gravar_relatorio(erros, caminho): ...
+
+   # aqui: conferir o sys.argv, chamar validar, mostrar os erros e os totais, gravar o relatório
    ```
 
-   Gravar o JSON com acento legível e identado:
+   Cada função ignora as colunas vazias: quem cuida delas é a `conferir_vazios`. Assim vale a regra "um erro por coluna".
+
+7. **O relatório em CSV.** Monte o nome com o `os.path` e grave com o `csv.writer`:
 
    ```python
-   with open(caminho_json, "w", encoding="utf-8") as arquivo:
-       json.dump(narrativas, arquivo, ensure_ascii=False, indent=2)
+   import os
+
+   nome = os.path.splitext(os.path.basename(caminho))[0]   # "teste_validador"
+   saida = os.path.join("resultados", f"erros_{nome}.csv")
+
+   os.makedirs("resultados", exist_ok=True)
+   with open(saida, "w", encoding="utf-8", newline="") as arquivo:
+       escritor = csv.writer(arquivo)
+       escritor.writerow(["linha", "coluna", "erro"])
+       for erro in erros:
+           escritor.writerow(erro)
    ```
 
-   Sem o `ensure_ascii=False`, "Caicó" aparece no arquivo como `"Caic\u00f3"`. Experimente com e sem e tire um print das duas saídas: é uma boa figura para a Metodologia.
+   O `newline=""` é obrigatório no Windows: sem ele, sai uma linha em branco entre cada linha. Grave o relatório **mesmo sem erro** (só com o cabeçalho) e na ordem das linhas (2, 3, 4...): na Sprint 3, você vai comparar esse arquivo com o gabarito do gerador do Gleidson, que segue a mesma ordem.
 
-5. **Organize em funções.** Uma sugestão de esqueleto (os comentários dizem o que cada parte faz; o código é seu):
+8. Rode com o arquivo de teste. Devem sair **os 7 erros** da tabela do passo 3, e o `resultados\erros_teste_validador.csv` deve ser igual à coluna "O validador deve dizer". Teste também: o cabeçalho errado (copie o arquivo, troque `titulo` por `Titulo` e rode: o validador avisa e para) e o comando sem o nome do arquivo (mostra a mensagem de uso).
 
-   ```python
-   import csv
-   import json
-   import sys
+   Faça um *commit* a cada regra que funcionar: `feat: confere campos vazios`, `feat: confere números inteiros e faixa do ano`, `feat: confere valores das listas e id repetido`, `feat: grava relatório de erros`.
 
+9. **Ainda não rode o validador na planilha real.** Isso é o primeiro passo da Sprint 3: a versão "antes da correção" é um dos seus resultados.
 
-   def converter_linha(linha):
-       """Recebe um dicionário com os textos do CSV e devolve o dicionário convertido."""
-       # id e ano_fonte para inteiro, palavras_chave para lista, opcionais vazios para None
-       ...
+**O catálogo e as estatísticas**
 
+10. **Na terça, 01/12**, com as 20 narrativas prontas, baixe a planilha como CSV (Sprint 1, passo 14) e salve como `dados/narrativas.csv`. Faça o *commit*: `docs: adiciona catálogo com 20 narrativas`.
 
-   def ler_csv(caminho):
-       """Devolve a lista de narrativas já convertidas."""
-       ...
+    **Não corrija mais nada nesta versão**, mesmo que você ache algum erro. Se achar, anote no diário e deixe para a Sprint 3.
 
+11. **As estatísticas (`scripts/estatisticas.py`).** Ele lê o **CSV** (não o JSON: assim você não depende do conversor do Samuel) e produz:
 
-   def gravar_json(narrativas, caminho):
-       ...
+    | Saída | Arquivo |
+    |---|---|
+    | total de narrativas e de municípios diferentes | tela e `resultados/estatisticas.txt` |
+    | quantas narrativas por `tipo`, por `publico`, por `mesorregiao` e por `licenca` | tela e `resultados/estatisticas.txt` |
+    | gráfico de barras por `tipo` | `resultados/grafico_tipo.png` |
+    | gráfico de barras por `mesorregiao` | `resultados/grafico_mesorregiao.png` |
 
-
-   # aqui: conferir sys.argv, chamar ler_csv, chamar gravar_json e mostrar o total
-   ```
-
-6. Teste primeiro com o `dados/modelo.csv` (3 narrativas). Abra o `dados/modelo.json` gerado no VS Code e confira, narrativa por narrativa: `id` sem aspas (é número), `ano_fonte` sem aspas ou `null`, `palavras_chave` entre colchetes, acentos certos.
-
-   O resultado deve ter esta cara:
-
-   ```json
-   [
-     {
-       "id": 1,
-       "titulo": "...",
-       "tipo": "lenda",
-       ...
-       "texto": "\"Primeiro trecho...\" | \"Segundo trecho...\"",
-       "palavras_chave": ["...", "..."],
-       "url_fonte": null,
-       "ano_fonte": 1952,
-       "licenca": "direitos_reservados"
-     },
-     ...
-   ]
-   ```
-
-   No `texto`, as aspas aparecem como `\"`: é assim que o JSON guarda aspas dentro de um texto, e o `json.load` devolve as aspas normais na leitura.
-
-   Faça o *commit*: `feat: adiciona conversor de CSV para JSON`.
-
-7. **O que acontece com um erro na planilha?** Abra o `dados/modelo.csv` no VS Code, troque um `ano_fonte` por `mil novecentos` e rode o conversor de novo. Ele vai parar com `ValueError`. **Não trate esse erro no conversor:** encontrar erro é trabalho do validador do Aluno 1, que roda **antes** do conversor. Anote no diário o que aconteceu (vira um argumento da Metodologia: por que validar antes de converter) e desfaça a mudança com `git checkout dados/modelo.csv`.
-
-8. **Na terça, 01/12**, com as 20 narrativas prontas, baixe a planilha como CSV (Sprint 1, passo 14), salve como `dados/narrativas.csv`, rode o conversor e gere o `dados/narrativas.json`:
-
-   ```
-   python scripts\converter.py dados\narrativas.csv dados\narrativas.json
-   ```
-
-   Faça o *commit*: `docs: adiciona catálogo com 20 narrativas`.
-
-   **Guarde uma cópia desta versão da planilha sem corrigir nada**, mesmo que você ache algum erro depois. Na Sprint 3, o validador vai rodar sobre ela para medir quantos erros uma planilha preenchida à mão tem. Se você corrigir antes, perde esse resultado. Se achar um erro, anote no diário e deixe para corrigir na Sprint 3.
-
-9. **As estatísticas (`scripts/estatisticas.py`).** Ele lê o `dados/narrativas.json` e produz:
-
-   | Saída | Arquivo |
-   |---|---|
-   | quantas narrativas por `tipo`, por `publico`, por `mesorregiao` e por `licenca` | tela e `resultados/estatisticas.txt` |
-   | os 10 municípios com mais narrativas e o total de municípios diferentes | tela e `resultados/estatisticas.txt` |
-   | a completude de cada coluna opcional (quantos % preenchidos) | tela e `resultados/estatisticas.txt` |
-   | gráfico de barras por `tipo` | `resultados/grafico_tipo.png` |
-   | gráfico de barras por `mesorregiao` | `resultados/grafico_mesorregiao.png` |
-   | gráfico de barras por `publico` | `resultados/grafico_publico.png` |
-
-   ```
-   python scripts\estatisticas.py dados\narrativas.json
-   ```
-
-10. **As peças das estatísticas.**
-
-    Ler o JSON:
-
-    ```python
-    with open(caminho, encoding="utf-8") as arquivo:
-        narrativas = json.load(arquivo)   # volta a ser uma lista de dicionários
     ```
+    python scripts\estatisticas.py dados\narrativas.csv
+    ```
+
+12. **As peças das estatísticas.**
 
     Contar com o `Counter` (https://docs.python.org/pt-br/3/library/collections.html#collections.Counter):
 
     ```python
+    import csv
     from collections import Counter
 
-    por_tipo = Counter(n["tipo"] for n in narrativas)
+    with open(caminho, encoding="utf-8") as arquivo:
+        narrativas = list(csv.DictReader(arquivo))
+
+    por_tipo = Counter(n["tipo"].strip() for n in narrativas)
     print(por_tipo)                  # Counter({'lenda': 12, 'conto': 8, ...})
-    print(por_tipo.most_common(3))   # os 3 mais frequentes
     ```
 
-    Completude de uma coluna opcional (repita para `palavras_chave`, `url_fonte` e `ano_fonte`; lembre que, no JSON, vazio virou `None` ou `[]`, que também são "falsos"):
-
-    ```python
-    preenchidas = sum(1 for n in narrativas if n["url_fonte"])
-    percentual = preenchidas / len(narrativas) * 100
-    print(f"url_fonte: {preenchidas} de {len(narrativas)} ({percentual:.1f}%)")
-    ```
+    Municípios diferentes: `len({n["municipio"].strip() for n in narrativas})` (um conjunto não repete valores).
 
     Um gráfico de barras com o `matplotlib` (https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_colors.html):
 
     ```python
     import matplotlib.pyplot as plt
 
-    rotulos = list(por_tipo.keys())
-    valores = list(por_tipo.values())
-
     plt.figure(figsize=(8, 5))
-    plt.bar(rotulos, valores)
+    plt.bar(list(por_tipo.keys()), list(por_tipo.values()))
     plt.xlabel("Tipo de narrativa")
     plt.ylabel("Quantidade")
     plt.savefig("resultados/grafico_tipo.png", dpi=150, bbox_inches="tight")
     plt.close()
     ```
 
-    **Não coloque título no gráfico** (`plt.title`): no RCC, o título vai na legenda da figura, acima dela, como manda a ABNT. Os gráficos são os três, iguais na forma: escreva **uma função** que recebe o `Counter`, o nome do eixo e o nome do arquivo, e chame três vezes.
+    **Não coloque título no gráfico** (`plt.title`): no RCC, o título vai na legenda da figura, acima dela, como manda a ABNT. Os dois gráficos são iguais na forma: escreva **uma função** que recebe o `Counter`, o nome do eixo e o nome do arquivo, e chame duas vezes.
 
-    Para gravar o texto em `resultados/estatisticas.txt`, o mais simples é montar as linhas em uma lista e gravar no fim:
+    Para o `estatisticas.txt`, monte as linhas em uma lista e grave no fim com `arquivo.write("\n".join(linhas))`.
 
-    ```python
-    linhas = []
-    linhas.append(f"Total de narrativas: {len(narrativas)}")
-    ...
-    with open("resultados/estatisticas.txt", "w", encoding="utf-8") as arquivo:
-        arquivo.write("\n".join(linhas))
-    ```
-
-11. Rode, abra os três gráficos e o `estatisticas.txt` e confira as contas **à mão** em pelo menos uma coluna (filtre a planilha do Google pelo tipo e conte). Se a conta do programa não bater com a sua, o programa está errado.
+13. Rode, abra os gráficos e o `estatisticas.txt` e confira as contas **à mão** em pelo menos uma coluna (filtre a planilha do Google pelo tipo e conte). Se a conta do programa não bater com a sua, o programa está errado.
 
     Faça o *commit*: `feat: adiciona estatísticas e gráficos do catálogo`.
 
-12. **Revise os PRs dos colegas.** Até quinta, o Aluno 1 e o Aluno 2 abrem os PRs deles e marcam você. Abra cada um, aba **Files changed**, e confira se os nomes das colunas, os valores das listas e os códigos de erro estão **exatamente** como na [seção 4](#formato). Se houver diferença, comente na linha (passe o mouse sobre a linha e clique no **+** azul).
+14. **Revise os PRs dos colegas.** Até quinta, o Samuel e o Gleidson abrem os PRs deles e marcam você. Abra cada um, aba **Files changed**, e confira se os nomes das colunas, os valores das listas e os códigos de erro estão **exatamente** como na [seção 4](#formato). Se houver diferença, comente na linha (passe o mouse sobre a linha e clique no **+** azul).
 
-13. Escreva o diário da Sprint 2, faça o *commit*, envie e abra o PR com `Closes #3` até **quinta, 03/12**. Em **Como testar**, cole a saída dos dois programas.
+15. Escreva o diário da Sprint 2, faça o *commit*, envie e abra o PR até **quinta, 03/12**. Em **Como testar**, cole a saída dos dois programas e a tabela de resposta esperada do validador.
 
 ### Como saber que deu certo
 
+- Com o arquivo de teste, a saída do validador e o `resultados\erros_teste_validador.csv` batem, erro por erro, com a tabela do passo 3. A linha 2 (a certa) não gera erro nenhum.
 - `dados/narrativas.csv` tem 21 linhas (cabeçalho + 20).
-- `dados/narrativas.json` abre no VS Code sem marcação vermelha, com 20 objetos, números sem aspas e acentos certos.
-- `resultados/` tem os 3 gráficos e o `estatisticas.txt`, e as contas batem com a contagem à mão.
+- `resultados/` tem os 2 gráficos e o `estatisticas.txt`, e as contas batem com a contagem à mão.
 
 ### Entrega da sprint
 
-- [ ] 20 narrativas na planilha até **01/12** e `dados/narrativas.csv` no repositório
-- [ ] `scripts/converter.py` gerando `dados/narrativas.json`
-- [ ] `scripts/estatisticas.py` gerando `resultados/estatisticas.txt` e 3 gráficos
+- [ ] 20 narrativas na planilha até **01/12** e `dados/narrativas.csv` no repositório (sem correções depois disso)
+- [ ] `dados/teste_validador.csv` com 8 narrativas e 7 erros conhecidos
+- [ ] `scripts/validar.py` com as 5 regras e o relatório `resultados/erros_<nome>.csv`
+- [ ] `scripts/estatisticas.py` gerando `resultados/estatisticas.txt` e 2 gráficos
 - [ ] Contagem conferida à mão em pelo menos uma coluna
 - [ ] PRs dos colegas revisados
-- [ ] PR para a `develop` com `Closes #3`, até **03/12**
+- [ ] PR para a `develop` até **03/12**
 
 ### Erros comuns
 
+- **O `id` da primeira linha aparece como repetido:** você acrescentou o `id` no conjunto **antes** de conferir. Confira antes, acrescente depois.
+- **`fora_da_lista` para valores certos:** faltou o `.strip()`, ou a lista do programa tem um valor digitado diferente do formato.
+- **Erro `vazio` e `nao_inteiro` na mesma coluna:** a função de inteiros não está ignorando os valores vazios.
+- **Linha em branco entre as linhas do relatório:** faltou `newline=""` no `open` de escrita.
 - **`ModuleNotFoundError: No module named 'matplotlib'`**: o ambiente virtual não está ativo. Ative (`.venv\Scripts\Activate.ps1`) e rode de novo.
 - **`FileNotFoundError`**: você rodou de dentro da pasta `scripts`. Volte para a raiz (`cd ..`).
 - **Gráfico com os nomes das barras encavalados:** use `plt.xticks(rotation=45)` antes do `savefig`.
-- **`JSONDecodeError`** no `estatisticas.py`: o JSON foi editado à mão e quebrou. Gere de novo com o conversor.
 
 ---
 
 <a id="sprint-3"></a>
 # Sprint 3: 04/12 a 10/12 - Integração e fechamento
 
-**Branch:** `feature/integracao` · **Issue:** #5 · **PR até:** segunda, 07/12
+**Branch:** `feature/integracao` · **PR até:** segunda, 07/12
 
-**O que você vai entregar:** o validador do Aluno 1 rodado na sua planilha real (antes e depois da correção), o gerador do Aluno 2 rodado com 100 e 1.000 narrativas, o `comparar.py`, que mede quantos erros inseridos o validador detectou, e o `README.md` final com o passo a passo para rodar tudo.
+**O que você vai entregar:** a planilha real validada e corrigida, o `dados/narrativas.json` gerado pelo conversor do Samuel e conferido pelo verificador dele, o seu validador testado com as bases fictícias do Gleidson, o `resultados/resumo.md` e o `README.md` final.
 
-**A integração acontece na sexta, 04/12.** Nesse dia, os PRs dos colegas já foram integrados por mim na `develop`.
+**A integração acontece na sexta, 04/12.** Nesse dia, os PRs dos colegas já foram integrados por mim na `develop`. Ela leva umas duas horas: é só rodar os programas na ordem certa e guardar as saídas.
 
 ### Passo a passo
 
@@ -840,130 +839,100 @@ mp_narrativas_catalogo/
    git checkout -b feature/integracao
    ```
 
-   Confira que os programas dos colegas chegaram: `scripts\validar.py` e `scripts\gerar_fake.py` precisam existir.
+   Confira que os programas dos colegas chegaram: `scripts\converter.py`, `scripts\verificar_json.py` e `scripts\gerar_fake.py` precisam existir.
 
-2. **Validador na planilha real, antes da correção.** Rode sobre a versão da planilha que você guardou na Sprint 2, **sem corrigir nada**:
-
-   ```
-   python scripts\validar.py dados\narrativas.csv
-   ```
-
-   O validador mostra os erros na tela e grava `resultados\erros_narrativas.csv`. **Renomeie** esse arquivo para `resultados\erros_narrativas_antes.csv`: ele é o resultado "antes". Tire um print da tela.
-
-3. **Corrija a planilha.** Para cada erro da lista, corrija **no Google Planilhas**, baixe de novo o CSV para `dados\narrativas.csv` e rode o validador outra vez. Repita até ele mostrar **0 erros**. Tire um print da tela com 0 erros e gere de novo o JSON e as estatísticas:
+2. **Validador na planilha real, antes da correção.** Rode sobre o `dados\narrativas.csv` da Sprint 2, **sem corrigir nada**:
 
    ```
    python scripts\validar.py dados\narrativas.csv
-   python scripts\converter.py dados\narrativas.csv dados\narrativas.json
-   python scripts\estatisticas.py dados\narrativas.json
+   ```
+
+   **Renomeie** o `resultados\erros_narrativas.csv` para `resultados\erros_narrativas_antes.csv` e tire um print da tela. Se der 0 erros, ótimo: isso também é resultado (lembre do menu suspenso da Sprint 1, passo 13).
+
+3. **Corrija a planilha.** Para cada erro, corrija **no Google Planilhas**, baixe de novo o CSV para `dados\narrativas.csv` e rode o validador outra vez, até ele mostrar **0 erros**. Tire um print e gere de novo as estatísticas:
+
+   ```
+   python scripts\validar.py dados\narrativas.csv
+   python scripts\estatisticas.py dados\narrativas.csv
    ```
 
    Faça o *commit*: `fix: corrige erros apontados pelo validador na planilha`.
 
-4. **Gerador + validador.** Gere duas bases fictícias e rode o validador em cada uma:
+4. **O JSON.** Com a planilha sem erros, rode o conversor do Samuel e depois o verificador dele:
+
+   ```
+   python scripts\converter.py dados\narrativas.csv dados\narrativas.json
+   python scripts\verificar_json.py dados\narrativas.csv dados\narrativas.json
+   ```
+
+   O verificador deve dizer `Diferenças: 0`. Abra o `dados\narrativas.json` no VS Code e olhe uma narrativa: `id` sem aspas, acentos certos. Tire um print das duas saídas. Faça o *commit*: `docs: adiciona catálogo em JSON`.
+
+   Se o conversor ou o verificador der problema, avise o Samuel no grupo da equipe, com o comando e a saída inteira, e me marque. Ele corrige até terça, 08/12, e você roda de novo.
+
+   **Por que nessa ordem?** O conversor transforma `ano_fonte` em número; se a planilha tiver `mil novecentos` no ano, ele para. Por isso o validador roda **antes**. Anote no diário: é um parágrafo da Metodologia.
+
+5. **O validador com as bases fictícias.** Gere duas bases com o gerador do Gleidson e rode o seu validador em cada uma:
 
    ```
    python scripts\gerar_fake.py 100
-   python scripts\gerar_fake.py 1000
    python scripts\validar.py dados\fake\fake_100.csv
+   python scripts\gerar_fake.py 1000
    python scripts\validar.py dados\fake\fake_1000.csv
    ```
 
-   O gerador cria, para cada base, o arquivo de dados (`fake_100.csv`) e o gabarito com os erros que inseriu (`fake_100_gabarito.csv`). O validador grava o que encontrou em `resultados\erros_fake_100.csv`.
+   O gerador cria a planilha (`dados\fake\fake_100.csv`) e o gabarito com os erros que inseriu (`dados\fake\fake_100_gabarito.csv`). O seu validador grava o que encontrou em `resultados\erros_fake_100.csv`. Os dois arquivos têm o mesmo formato e a mesma ordem, então **devem ser iguais**.
+
+   Para comparar, use o próprio VS Code: no explorador, clique no gabarito, segure `Ctrl`, clique no relatório do validador, botão direito → **Compare Selected**. Se nenhuma linha ficar destacada, os dois são iguais. Faça isso para a base de 100 e para a de 1.000 e tire um print de cada.
+
+   **Se aparecer diferença:** abra a linha indicada no `fake_100.csv` (`Ctrl + G` e o número) e veja quem está certo. Se o valor está fora das regras e o seu validador não pegou, corrija o validador. Se o gabarito está errado, avise o Gleidson no grupo da equipe, com a linha, a coluna e o valor, e me marque. Anote no diário o que aconteceu: vai para os Resultados.
 
    Como a pasta `dados/fake/` não vai para o Git, **anote no README o comando exato** que gerou cada base. O gerador usa uma semente fixa, então o mesmo comando gera sempre os mesmos dados.
 
-5. **O comparador (`scripts/comparar.py`).** Ele recebe o gabarito do gerador e o relatório do validador e diz quantos erros inseridos foram detectados:
-
-   ```
-   python scripts\comparar.py dados\fake\fake_100_gabarito.csv resultados\erros_fake_100.csv
-   ```
-
-   Saída esperada (os números são só de exemplo):
-
-   ```
-   Erros inseridos pelo gerador: 10
-   Erros encontrados pelo validador: 10
-   Detectados: 10 de 10 (100.0%)
-   Não detectados: 0
-   Encontrados que não estavam no gabarito: 0
-   ```
-
-   **A peça principal é o conjunto (`set`).** Leia cada arquivo e guarde cada erro como uma tupla `(linha, coluna, erro)` dentro de um conjunto. Depois, as operações de conjunto respondem tudo:
-
-   ```python
-   gabarito = {("5", "titulo", "vazio"), ("9", "ano_fonte", "nao_inteiro")}
-   encontrados = {("5", "titulo", "vazio")}
-
-   gabarito & encontrados   # interseção: os detectados
-   gabarito - encontrados   # diferença: os que o validador deixou passar
-   encontrados - gabarito   # os que o validador achou e não estavam no gabarito
-   ```
-
-   Pesquise "conjuntos python" na documentação: https://docs.python.org/pt-br/3/tutorial/datastructures.html#sets
-
-   Para montar o conjunto a partir do arquivo, use o `csv.DictReader` (Sprint 2) e, para cada linha, `conjunto.add((linha["linha"], linha["coluna"], linha["erro"]))`. Mostre também **quais** erros não foram detectados (a lista), porque cada um deles é um caso para discutir no RCC.
-
-6. Rode o comparador para as bases de 100 e de 1.000 e guarde as duas saídas em `resultados\comparacao.txt` (copie da tela ou faça o programa gravar). Tire print.
-
-   **Se a detecção não der 100%:** não "conserte" o gabarito. Veja qual erro escapou e por quê (por exemplo, o gerador inseriu um ano negativo, `-5`, e o validador conferiu só se era inteiro). Isso é um **resultado** e vai para o RCC. Avise o colega responsável na *issue* dele: ele corrige até terça, e você roda de novo.
-
-7. **Só depois da comparação, teste o conversor em volume.** Rodado sobre a `fake_1000.csv`, ele para no primeiro erro (como você viu na Sprint 2, passo 7). Para testar com 1.000 narrativas, gere uma base **sem erros**: o gerador do Aluno 2 tem uma variável `TAXA_ERRO` no começo do programa. Mude para `0`, gere, converta, **desfaça a mudança sem fazer *commit*** e gere de novo a base original (o gabarito da base de 1.000 é sobrescrito quando você gera sem erros):
-
-   ```
-   python scripts\gerar_fake.py 1000
-   python scripts\converter.py dados\fake\fake_1000.csv dados\fake\fake_1000.json
-   git checkout scripts/gerar_fake.py
-   python scripts\gerar_fake.py 1000
-   ```
-
-   Isso mostra que o conversor aguenta 1.000 narrativas. Anote no diário quantos segundos levou (vai ser rápido).
-
-8. **Monte a tabela-resumo dos resultados** em `resultados\resumo.md`. É dela que você vai escrever o capítulo de Resultados:
+6. **O resumo** em `resultados\resumo.md`. É dele que você escreve os Resultados do RCC:
 
    ```markdown
-   | Medida | Valor |
+   | O que foi feito | Resultado |
    |---|---|
-   | Narrativas no catálogo | 20 |
-   | Municípios diferentes | ... |
-   | Mesorregião com mais narrativas | ... (n) |
-   | Mesorregião com menos narrativas | ... (n) |
-   | Completude de palavras_chave / url_fonte / ano_fonte | ...% / ...% / ...% |
-   | Erros na planilha real antes da correção | ... (por tipo de erro: ...) |
-   | Erros inseridos na base de 100 / detectados | ... / ... |
-   | Erros inseridos na base de 1.000 / detectados | ... / ... |
+   | Narrativas no catálogo | 20, de ... municípios |
+   | Tipo mais frequente | ... (n) |
+   | Mesorregião com mais / com menos narrativas | ... (n) / ... (n) |
+   | Erros na planilha real antes da correção | ... (quais: ...) |
+   | Erros depois da correção | 0 |
+   | JSON gerado e verificado | 20 narrativas, 0 diferenças |
+   | Base fictícia de 100: erros inseridos / encontrados pelo validador | ... / ... |
+   | Base fictícia de 1.000: erros inseridos / encontrados pelo validador | ... / ... |
    ```
 
-9. **O `README.md` final.** Complete o README (a seção "Como rodar" e o que faltar) para que qualquer pessoa da equipe consiga rodar tudo do zero. Mantenha a tabela da equipe e os links para os planos. Ele precisa ter:
+   Para contar os erros de um arquivo, abra no VS Code e veja o número da última linha: o total de erros é esse número menos 1 (o cabeçalho).
 
-   - o que é o catálogo (2 ou 3 linhas);
-   - quem fez o quê (você, o Aluno 1 e o Aluno 2);
+7. **O `README.md` final.** Complete o README (a seção "Como rodar" e o que faltar) para que qualquer pessoa da equipe consiga rodar tudo do zero. Mantenha a tabela da equipe e os links para os planos. Ele precisa ter:
+
    - como instalar (clonar, criar o ambiente, `pip install -r requirements.txt`);
-   - **a ordem de execução**, com os comandos exatos dos passos 2 a 7;
-   - onde está o formato (`docs/formato_planilha.md`);
-   - a origem dos dados e a observação sobre direitos autorais (o catálogo guarda só de 2 a 3 trechos curtos de cada narrativa, com a referência, conforme o art. 46, inciso III, da Lei nº 9.610/1998).
+   - **a ordem de execução**, com os comandos exatos dos passos 2 a 5;
+   - o link para o formato (`docs/formato_planilha.md`);
+   - a observação sobre direitos autorais (o catálogo guarda só de 2 a 3 trechos curtos de cada narrativa, com a referência, conforme o art. 46, inciso III, da Lei nº 9.610/1998).
 
-   Teste o README de verdade: apague a pasta `dados\fake` e o `resultados\` (menos os arquivos `_antes`), siga o README do começo ao fim e confira que tudo é gerado de novo.
+   Teste o README de verdade: apague a pasta `dados\fake` e os arquivos de `resultados\` (menos o `erros_narrativas_antes.csv` e o `resumo.md`), siga o README do começo ao fim e confira que tudo é gerado de novo.
 
-10. Diário da Sprint 3, *commit*, envio e PR com `Closes #5` até **segunda, 07/12**. De terça a quinta, só escrita.
+8. Diário da Sprint 3, *commit*, envio e PR até **segunda, 07/12**. De terça a quinta, só escrita.
 
 ### Como saber que deu certo
 
 - O validador mostra 0 erros em `dados/narrativas.csv`.
 - `resultados/erros_narrativas_antes.csv` existe e não foi alterado à mão.
-- O comparador mostra a taxa de detecção para as bases de 100 e de 1.000.
+- O verificador do Samuel mostra `Diferenças: 0` para o `dados/narrativas.json`.
+- Nas bases de 100 e de 1.000, o relatório do validador é igual ao gabarito do gerador (ou a diferença está explicada no diário).
 - Seguindo só o README, outra pessoa consegue gerar todas as saídas.
 
 ### Entrega da sprint
 
-- [ ] `resultados/erros_narrativas_antes.csv` e print do validador antes e depois da correção
-- [ ] Planilha corrigida, JSON e estatísticas gerados de novo
-- [ ] Bases de 100 e 1.000 geradas, validadas e comparadas
-- [ ] Conversor testado com 1.000 narrativas sem erro
-- [ ] `scripts/comparar.py` e `resultados/comparacao.txt`
+- [ ] `resultados/erros_narrativas_antes.csv` e prints do validador antes e depois da correção
+- [ ] Planilha corrigida e estatísticas geradas de novo
+- [ ] `dados/narrativas.json` gerado pelo conversor e conferido pelo verificador
+- [ ] Bases de 100 e 1.000 geradas, validadas e comparadas com o gabarito
 - [ ] `resultados/resumo.md`
 - [ ] `README.md` final, testado do zero
-- [ ] PR para a `develop` com `Closes #5`, até **07/12**
+- [ ] PR para a `develop` até **07/12**
 
 ---
 
@@ -972,8 +941,9 @@ mp_narrativas_catalogo/
 
 | Risco | Quando aparece | O que fazer |
 |---|---|---|
-| Não encontrar 20 narrativas com fonte e município até 01/12 | Sprint 2 | Feche o catálogo com o que tiver, desde que sejam pelo menos 15, registre todas as tentativas em `docs/fontes_consultadas.md` e discuta a lacuna nos Resultados. Escreva na *issue* #3 quantas ficaram |
-| O validador do Aluno 1 não ficar pronto até 03/12 | Sprint 3 | Escreva você uma versão mínima, com 10 linhas, que só confere campo obrigatório vazio, e use nos Resultados. O teste com o gerador fica como trabalho futuro |
-| O gerador do Aluno 2 não ficar pronto até 03/12 | Sprint 3 | Monte à mão um arquivo com 20 linhas e 10 erros conhecidos (use o `dados/teste_validador.csv` do Aluno 1 como base) e meça a detecção com ele |
-| Os dois atrasarem | Sprint 3 | O seu trabalho continua completo: formato, catálogo, JSON e estatísticas. A validação vira trabalho futuro |
+| Não encontrar 20 narrativas com fonte e município até 01/12 | Sprint 2 | Feche o catálogo com o que tiver, desde que sejam pelo menos 15, registre todas as tentativas em `docs/fontes_consultadas.md` e diga nos Resultados quantas ficaram. Me avise no grupo da equipe |
+| O validador não ficar completo até 03/12 | Sprint 2 | Entregue o que estiver funcionando (no mínimo, cabeçalho e `vazio`) e diga na descrição do PR o que faltou. As regras que faltarem viram limitação no RCC |
+| O conversor do Samuel não ficar pronto até 03/12 | Sprint 3 | As suas estatísticas leem o CSV, então nada para. Escreva você um conversor mínimo, de 10 linhas, que só faz `json.dump(list(csv.DictReader(arquivo)), ...)` com `ensure_ascii=False` (tudo fica como texto), e diga nos Resultados que a conversão dos tipos ficou como trabalho futuro |
+| O gerador do Gleidson não ficar pronto até 03/12 | Sprint 3 | O teste do validador fica só com o seu `dados/teste_validador.csv`. O teste com bases fictícias vira trabalho futuro |
+| Os dois atrasarem | Sprint 3 | O seu trabalho continua completo: formato, catálogo, validador e estatísticas |
 | Laboratório fechado ou sem internet | qualquer | A planilha do Google funciona no celular. Preencha narrativas por ele e programe quando voltar |

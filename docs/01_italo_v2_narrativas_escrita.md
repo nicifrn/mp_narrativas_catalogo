@@ -8,6 +8,8 @@
 
 **Plano de desenvolvimento correspondente:** [`docs/01_italo_v2_narrativas_desenvolvimento.md`](01_italo_v2_narrativas_desenvolvimento.md)
 
+> **Não há *issues* no GitHub:** este documento é o seu roteiro da escrita. As entregas são avisadas no grupo da equipe.
+
 **Normas e regras de escrita:** [`docs/orientacoes_escrita_tcc.md`](orientacoes_escrita_tcc.md). Tudo o que está lá vale para o seu RCC: estrutura, citações, referências, figuras, tabelas e formatação. Este plano **não repete** as regras da ABNT; ele diz **o que pesquisar e o que escrever** em cada parte do seu trabalho.
 
 > **Importante:** o que segue são **orientações**, não o texto pronto. Não copie estas frases para o RCC. Elas dizem sobre o que é cada parágrafo; o texto tem de ser escrito por você, com as suas palavras e com as referências que você leu.
@@ -22,7 +24,7 @@
 - [4. Fichamento e referências](#fichamento)
 - [Entrega 1 - Introdução e Objetivos (26/11)](#entrega-1)
 - [Entrega 2 - Referencial Teórico e Metodologia (03/12)](#entrega-2)
-- [Entrega 3 - Resultados e Discussão (08/12)](#entrega-3)
+- [Entrega 3 - Resultados (08/12)](#entrega-3)
 - [Entrega 4 - Conclusão, Resumo, Título e revisão final (10/12)](#entrega-4)
 - [5. Referências por onde começar](#referencias)
 
@@ -46,19 +48,13 @@ No dia **23/11** eu compartilho com você um documento do Google Drive **já no 
 
 1. Escreva no documento do Drive.
 2. Nomeie a versão no histórico.
-3. Comente na *issue* de escrita da sprint: `@brunogomesifrn Entrega 1 pronta para revisão - versão "Entrega 1 - Introdução - 26/11"`.
+3. Avise no grupo da equipe, me marcando: `Entrega 1 pronta para revisão - versão "Entrega 1 - Introdução - 26/11"`.
 
-Eu comento no próprio documento. Quando a entrega estiver aprovada, fecho a *issue*.
-
-| Sprint | *Issue* de escrita | Entregas |
-|---|---|---|
-| 1 | #2 | Entrega 1 |
-| 2 | #4 | Entrega 2 |
-| 3 | #6 | Entregas 3 e 4 |
+Eu comento no próprio documento e aviso no grupo quando a entrega estiver aprovada.
 
 ### Regras de ouro
 
-- **Entregue no prazo, mesmo incompleto.** Na *issue*, diga o que ficou faltando.
+- **Entregue no prazo, mesmo incompleto.** No aviso, diga o que ficou faltando.
 - **Escreva todo dia um pouco.** Três semanas é pouco tempo: uma hora por dia de escrita rende mais do que um fim de semana inteiro na véspera.
 - **Escreva enquanto programa.** Toda decisão que você tomar no código (por que essa coluna, por que validar antes de converter) é um parágrafo da Metodologia. Anote no `docs/diario.md` na hora.
 
@@ -72,13 +68,13 @@ Eu comento no próprio documento. Quando a entrega estiver aprovada, fecho a *is
 | — | 23/11 (seg) a 24/11 (ter) | Ler as orientações de escrita, o resumo do projeto e as primeiras referências. Começar o fichamento |
 | **1** | **26/11 (qui)** | Introdução, Objetivo geral e Objetivos específicos |
 | **2** | **03/12 (qui)** | Referencial Teórico (meta: pronto até segunda, 30/11) e Metodologia |
-| **3** | **08/12 (ter)** | Resultados e Discussão |
+| **3** | **08/12 (ter)** | Resultados |
 | **4** | **10/12 (qui)** | Conclusão, revisão da Introdução e dos Objetivos, Resumo, *Abstract*, Título, Apêndices e revisão final |
 
 **Como a escrita conversa com o desenvolvimento:**
 
-- a **Metodologia** (Entrega 2) descreve o que você fez nas Sprints 1 e 2: o formato, a coleta, o conversor. Ela é escrita na mesma semana em que você programa, então escreva no dia em que fizer;
-- os **Resultados** (Entrega 3) dependem da integração de **sexta, 04/12**. No sábado e no domingo você já tem o `resultados/resumo.md` e os gráficos: as seções 4.1 a 4.3 (formato, catálogo e completude) podem ser escritas **antes**, com os números da Sprint 2;
+- a **Metodologia** (Entrega 2) descreve o que você fez nas Sprints 1 e 2: o formato, a coleta, o validador. Ela é escrita na mesma semana em que você programa, então escreva no dia em que fizer;
+- os **Resultados** (Entrega 3) dependem da integração de **sexta, 04/12**. As seções 4.1 e 4.2 (formato e catálogo) podem ser escritas **antes**, com os números da Sprint 2;
 - a **Conclusão** precisa estar pronta até **quarta, 09/12**, para sobrar a quinta para o Resumo, o Título e a revisão.
 
 ---
@@ -100,20 +96,19 @@ Eu comento no próprio documento. Quando a entrega estiver aprovada, fecho a *is
 3.1 Classificação da pesquisa
 3.2 Etapas do trabalho
 3.3 Materiais e métodos
-4 RESULTADOS E DISCUSSÃO
+4 RESULTADOS
 4.1 O formato da planilha
 4.2 O catálogo construído
-4.3 Completude dos dados
-4.4 Erros na planilha preenchida à mão
-4.5 Avaliação do validador com dados fictícios
-4.6 Limitações
+4.3 A validação da planilha
+4.4 O catálogo em JSON
+4.5 Limitações
 5 CONCLUSÃO
 REFERÊNCIAS
 APÊNDICE A - Dicionário de dados da planilha
 APÊNDICE B - Narrativas catalogadas
 ```
 
-Tamanho de referência da parte textual: **de 15 a 20 páginas**. Mais ou menos: Introdução, 2; Referencial, 5 a 6; Metodologia, 3 a 4; Resultados, 5 a 7; Conclusão, 1 a 2.
+Tamanho de referência da parte textual: **de 12 a 16 páginas**. Mais ou menos: Introdução, 2; Referencial, 5 a 6; Metodologia, 2 a 3; Resultados, 3 a 4; Conclusão, 1.
 
 ### A pergunta do trabalho
 
@@ -161,8 +156,6 @@ Regras:
 <a id="entrega-1"></a>
 # Entrega 1 - Introdução e Objetivos (prazo: 26/11)
 
-**Issue:** #2
-
 ### Antes de escrever (23 e 24/11)
 
 1. Leia **inteiro** o [`docs/orientacoes_escrita_tcc.md`](orientacoes_escrita_tcc.md). Preste atenção nas seções Introdução, Objetivo geral e Objetivos específicos.
@@ -179,9 +172,9 @@ A Introdução segue uma ordem fixa de blocos. Escreva um bloco por vez, nesta o
 
 **Bloco 3 - Caminho para a solução (1 parágrafo).** O que a literatura diz que resolve esse tipo de problema: descrever cada item com **metadados** padronizados (SAYÃO e SALES, 2012; DCMI), usar formatos abertos e legíveis por máquina (CSV e JSON) e conferir a **qualidade dos dados** com regras automáticas (WANG e STRONG, 1996). Não aprofunde: isso é o Referencial. Aqui é só o caminho.
 
-**Bloco 4 - Apresentação da solução (1 a 2 parágrafos).** O que **você** fez: definiu um formato de planilha a partir dos campos previstos na plataforma, catalogou 20 narrativas reais do RN com fonte citável, registrando de cada uma de 2 a 3 trechos curtos da fonte original, converteu o catálogo para JSON e avaliou os dados com um validador automático e com dados fictícios gerados para teste. Diga o que foi medido (distribuição, completude, erros encontrados, taxa de detecção do validador).
+**Bloco 4 - Apresentação da solução (1 a 2 parágrafos).** O que **você** fez: definiu um formato de planilha a partir dos campos previstos na plataforma, catalogou 20 narrativas reais do RN com fonte citável, registrando de cada uma de 2 a 3 trechos curtos da fonte original, programou um validador que confere a planilha e, com os colegas, converteu o catálogo para JSON e testou o validador com dados fictícios.
 
-**Bloco 5 - Vínculo com o projeto e escopo (1 parágrafo).** O trabalho faz parte do projeto Narrativas, do NIC/IFRN. Deixe claro o que **não** foi feito: o catálogo guarda trechos curtos citados e a referência, não o texto integral das narrativas, porque a Lei nº 9.610/1998 permite citar passagens de uma obra (art. 46, III), mas não reproduzi-la inteira sem autorização; não houve carga em banco de dados nem interface web; o validador e o gerador foram desenvolvidos com dois colegas do curso (diga isso aqui, com o nome deles).
+**Bloco 5 - Vínculo com o projeto e escopo (1 parágrafo).** O trabalho faz parte do projeto Narrativas, do NIC/IFRN. Deixe claro o que **não** foi feito: o catálogo guarda trechos curtos citados e a referência, não o texto integral das narrativas, porque a Lei nº 9.610/1998 permite citar passagens de uma obra (art. 46, III), mas não reproduzi-la inteira sem autorização; não houve carga em banco de dados nem interface web; o conversor para JSON e o gerador de dados fictícios foram desenvolvidos por dois colegas do curso (diga isso aqui, com o nome deles).
 
 ### 1.1 Objetivo geral (1 frase)
 
@@ -193,11 +186,11 @@ Lista com marcadores, cada item começando com **verbo no infinitivo**. Cada obj
 
 - o formato da planilha (as colunas e as regras);
 - a catalogação das narrativas reais;
+- a validação da planilha;
 - a conversão para JSON;
-- a caracterização do catálogo (distribuição e completude);
-- a avaliação dos dados e do validador.
+- a descrição do catálogo construído.
 
-Escolha o verbo certo para cada um (definir, catalogar, converter, caracterizar, avaliar, verificar...). Evite verbos vagos como "estudar" e "entender": eles não dizem o que foi entregue.
+Escolha o verbo certo para cada um (definir, catalogar, validar, converter, descrever...). Evite verbos vagos como "estudar" e "entender": eles não dizem o que foi entregue.
 
 ### Entrega
 
@@ -206,14 +199,12 @@ Escolha o verbo certo para cada um (definir, catalogar, converter, caracterizar,
 - [ ] Objetivos específicos em lista, com verbos no infinitivo
 - [ ] Referências usadas já listadas na seção Referências do documento
 - [ ] Pelo menos 3 leituras fichadas em `docs/leituras.md`
-- [ ] Versão nomeada e aviso na *issue* #2
+- [ ] Versão nomeada e aviso no grupo
 
 ---
 
 <a id="entrega-2"></a>
 # Entrega 2 - Referencial Teórico e Metodologia (prazo: 03/12)
-
-**Issue:** #4
 
 **Meta:** Referencial pronto até **segunda, 30/11**. Terça e quarta para a Metodologia, quinta para revisar.
 
@@ -243,14 +234,14 @@ Releia a analogia do Referencial Teórico em [`docs/orientacoes_escrita_tcc.md`]
 
 - O que é o **CSV** (SHAFRANOVICH, 2005): uma linha por registro, campos separados por vírgula, cabeçalho. Mostre um trecho pequeno de CSV como figura ou quadro.
 - O que é o **JSON** (BRAY, 2017): objetos com chave e valor, listas, tipos (texto, número, nulo). Mostre um trecho pequeno de JSON.
-- Por que os dois: o CSV é fácil de preencher em planilha por qualquer pessoa; o JSON guarda os **tipos** (número, lista, nulo) e é o formato que sistemas web usam para trocar e carregar dados. É isso que justifica o seu conversor.
+- Por que os dois: o CSV é fácil de preencher em planilha por qualquer pessoa; o JSON guarda os **tipos** (número, lista, nulo) e é o formato que sistemas web usam para trocar e carregar dados. É isso que justifica a conversão do catálogo para JSON.
 
 ### 2.4 Qualidade de dados e validação (cerca de 1,5 página)
 
 - O que é qualidade de dados: dados "adequados para o uso" de quem vai usá-los (WANG e STRONG, 1996; BATINI e SCANNAPIECO, 2006).
-- As **dimensões** que o seu trabalho mede, uma por parágrafo curto, cada uma ligada a uma regra do validador ou a uma medida das estatísticas:
-  - **completude**: o dado está preenchido (campo obrigatório vazio; completude das colunas opcionais);
-  - **validade** ou conformidade: o dado obedece ao formato e ao domínio (número inteiro, faixa de ano, valor dentro da lista, de 2 a 3 trechos entre aspas);
+- As **dimensões** que o seu validador confere, uma por parágrafo curto, cada uma ligada a uma regra:
+  - **completude**: o dado está preenchido (campo obrigatório vazio);
+  - **validade** ou conformidade: o dado obedece ao formato e ao domínio (número inteiro, faixa de ano, valor dentro da lista);
   - **unicidade**: cada registro aparece uma vez só (`id` repetido).
 - **Validação automática** e **dados de teste**: por que testar um programa com dados em que o erro é conhecido de antemão (MYERS; BADGETT; SANDLER, 2011). É isso que justifica o gerador de dados fictícios do seu trabalho. Para "dados sintéticos", procure no Google Acadêmico `"dados sintéticos" teste de software` e `"synthetic data" "software testing"` e use um artigo que você tenha lido.
 
@@ -272,17 +263,16 @@ Para cada um, cite um artigo ou a página oficial com data de acesso. Feche a se
 Classifique a pesquisa com GIL (consulte a edição da biblioteca), como explica a seção "Classificação da pesquisa" de [`docs/orientacoes_escrita_tcc.md`](orientacoes_escrita_tcc.md):
 
 - **quanto à natureza:** aplicada (resolve um problema concreto do projeto);
-- **quanto à abordagem:** quantitativa (contagens, percentuais, taxa de detecção), com uma parte qualitativa (a discussão das lacunas e dos erros);
-- **quanto aos objetivos:** descritiva (caracteriza o catálogo);
-- **quanto aos procedimentos:** bibliográfica (o Referencial), documental (as fontes das narrativas) e experimental na avaliação do validador (erros inseridos de forma controlada).
+- **quanto aos objetivos:** descritiva (descreve o catálogo construído);
+- **quanto aos procedimentos:** bibliográfica (o Referencial) e documental (as fontes das narrativas).
 
 Justifique cada classificação com uma frase sobre o **seu** trabalho, não só com o nome.
 
 ### 3.2 Etapas do trabalho (1 parágrafo + 1 figura)
 
-As etapas, na ordem em que aconteceram: pesquisa bibliográfica; definição do formato; coleta e catalogação; conversão para JSON; caracterização do catálogo; validação da planilha real; avaliação do validador com dados fictícios. Faça um **fluxograma** simples dessas etapas (no Google Desenhos, no draw.io, https://app.diagrams.net, ou no próprio Google Docs) e coloque como figura, com legenda em cima e fonte embaixo ("Fonte: elaborado pelo autor (2026)").
+As etapas, na ordem em que aconteceram: pesquisa bibliográfica; definição do formato; coleta e catalogação; desenvolvimento do validador; validação e correção da planilha; conversão para JSON; teste do validador com dados fictícios. Faça um **fluxograma** simples dessas etapas (no Google Desenhos, no draw.io, https://app.diagrams.net, ou no próprio Google Docs) e coloque como figura, com legenda em cima e fonte embaixo ("Fonte: elaborado pelo autor (2026)").
 
-Diga também como o trabalho foi organizado: 3 *sprints* de uma semana, repositório no GitHub com *issues* e revisão por *pull request*, e a divisão de tarefas com os dois colegas.
+Diga também como o trabalho foi organizado: 3 *sprints* de uma semana, repositório no GitHub com revisão por *pull request*, e a divisão de tarefas com os dois colegas.
 
 ### 3.3 Materiais e métodos (2 a 3 páginas)
 
@@ -294,10 +284,10 @@ Releia a seção "Materiais e Métodos" de [`docs/orientacoes_escrita_tcc.md`](o
 
 - **definição do formato:** de onde vieram as colunas (o protótipo da plataforma, os metadados Dublin Core), as listas de valores e as regras. O formato completo vai no **Apêndice A** (é o seu `docs/formato_planilha.md`); aqui você resume e aponta para ele;
 - **coleta e catalogação:** quais fontes foram consultadas (a tabela do `docs/fontes_consultadas.md`, resumida), o **critério para uma narrativa entrar** (fonte citável e município do RN), como a mesorregião foi conferida no IBGE e **como os trechos foram registrados**: de 2 a 3 por narrativa, de 1 a 3 linhas cada, copiados sem alteração da fonte original, entre aspas, separados por ` | `, com os cortes marcados com `[...]`. Em seguida, **justifique a escolha com a lei**: o catálogo registra trechos curtos, e não o texto integral nem um resumo, porque a citação de passagens é permitida pelo art. 46, inciso III, da Lei nº 9.610/1998, desde que se indiquem o autor e a origem da obra, o que a coluna `fonte` garante; o texto integral só poderá ser incluído para as obras em domínio público (art. 41) ou com autorização. Explique também por que a coluna se chama `texto`: ela foi preparada para receber o texto completo no futuro;
-- **conversão:** o que o conversor faz com cada tipo de coluna (inteiro, lista, nulo). Uma figura com uma narrativa em CSV ao lado da mesma narrativa em JSON explica isso melhor que um parágrafo;
-- **caracterização:** quais contagens e percentuais foram calculados;
-- **validação:** as regras do validador e os códigos de erro (a tabela de erros do formato). Diga que a planilha real foi validada **antes** de qualquer correção, para medir os erros do preenchimento manual;
-- **avaliação do validador:** como o gerador cria narrativas fictícias, insere erros de propósito em uma parte das linhas (diga a taxa) e grava o gabarito; como o comparador confronta o gabarito com o que o validador encontrou; as bases de 100 e 1.000 narrativas; a semente fixa que permite repetir o experimento.
+- **validação:** as regras do seu validador e os códigos de erro (a tabela de erros do formato). Diga que a planilha real foi validada **antes** de qualquer correção, e por que o validador roda antes do conversor;
+- **conversão:** o que o conversor do colega faz com cada tipo de coluna (inteiro, lista, nulo) e como o verificador confere o resultado;
+- **teste com dados fictícios:** como o gerador do colega cria narrativas fictícias, insere erros de propósito em cerca de 10% das linhas e grava o gabarito, e como você comparou o gabarito com o relatório do validador;
+- **estatísticas:** quais contagens foram feitas.
 
 ### Entrega
 
@@ -306,64 +296,53 @@ Releia a seção "Materiais e Métodos" de [`docs/orientacoes_escrita_tcc.md`](o
 - [ ] Lei nº 9.610/1998 (arts. 41 e 46, III) explicada na seção 2.2, usada como justificativa do registro de trechos na seção 3.3 e listada nas Referências
 - [ ] Todas as leituras fichadas em `docs/leituras.md`
 - [ ] Comentários da Entrega 1 resolvidos
-- [ ] Versão nomeada e aviso na *issue* #4
+- [ ] Versão nomeada e aviso no grupo
 
 ---
 
 <a id="entrega-3"></a>
-# Entrega 3 - Resultados e Discussão (prazo: 08/12)
+# Entrega 3 - Resultados (prazo: 08/12)
 
-**Issue:** #6
+Releia a seção "Resultados" de [`docs/orientacoes_escrita_tcc.md`](orientacoes_escrita_tcc.md). A regra principal: **cada tabela e cada figura são apresentadas no texto antes de aparecerem e comentadas depois.**
 
-Releia a seção "Resultados" de [`docs/orientacoes_escrita_tcc.md`](orientacoes_escrita_tcc.md). A regra principal: **cada tabela e cada figura são apresentadas no texto antes de aparecerem e comentadas depois.** Número sem comentário não é resultado.
+**O que os Resultados são, no seu trabalho:** um **relato do que você produziu** no projeto, com os números que saíram dos programas. Não é preciso análise estatística, comparação com outros trabalhos nem conclusões gerais. Para cada parte, diga o que foi feito, mostre o resultado (um número, uma tabela, uma figura) e comente em 2 ou 3 frases.
 
-Tudo o que você precisa está em `resultados/`: o `resumo.md`, o `estatisticas.txt`, os gráficos, os relatórios de erros e o `comparacao.txt`.
+Tudo o que você precisa está em `resultados/`: o `resumo.md`, o `estatisticas.txt`, os gráficos e os relatórios de erros, além dos prints em `docs/evidencias/`.
 
 ### 4.1 O formato da planilha (meia página)
 
-O formato final, em um quadro resumido (coluna, obrigatória, tipo), apontando para o Apêndice A. Comente as decisões que deram mais trabalho (por exemplo, por que `mesorregiao` como lista e `municipio` como texto livre; por que a licença é da fonte).
+O formato final, em um quadro resumido (coluna, obrigatória, tipo), apontando para o Apêndice A. Comente em poucas frases uma ou duas decisões (por exemplo, por que `mesorregiao` é uma lista e `municipio` é texto livre).
 
-### 4.2 O catálogo construído (1 a 2 páginas)
+### 4.2 O catálogo construído (1 página)
 
-- Quantas narrativas, de quantos municípios, de quantas fontes diferentes.
-- Os gráficos por **tipo**, por **público** e por **mesorregião**, cada um com legenda e comentário.
-- **Discuta as lacunas:** qual mesorregião tem menos narrativas registradas e o que isso pode indicar: menos registros publicados sobre a região, fontes concentradas na capital ou o recorte das fontes que você conseguiu acessar. Esse é o achado mais interessante do catálogo para o projeto Narrativas.
-- A distribuição por **licença**: quantas narrativas vêm de fontes em domínio público e quantas de fontes com direitos reservados, e o que isso significa para a plataforma publicar o texto integral no futuro.
+- Quantas narrativas, de quantos municípios e de quantas fontes diferentes.
+- Os 2 gráficos (por **tipo** e por **mesorregião**), cada um com legenda e um comentário curto: qual tipo apareceu mais, e qual mesorregião ficou com menos narrativas (se uma região ficou com poucas, diga isso: é uma informação útil para o projeto).
 
-### 4.3 Completude dos dados (meia página)
+### 4.3 A validação da planilha (meia página a 1 página)
 
-Uma tabela com a completude de cada coluna opcional (`palavras_chave`, `url_fonte`, `ano_fonte`). Comente: qual ficou mais vazia e por quê (fontes impressas não têm endereço; sites não informam o ano).
+- Quantos erros o seu validador encontrou na planilha real **antes da correção**, e quais (uma tabela pequena ou uma frase), e que depois da correção ficaram 0. Os prints do validador antes e depois podem ser figuras.
+- O teste com as bases fictícias do gerador: em uma frase ou uma tabela pequena, quantos erros o gerador inseriu nas bases de 100 e de 1.000 narrativas e quantos o validador encontrou. Se tiver aparecido alguma diferença, conte o que era e o que foi corrigido.
 
-### 4.4 Erros na planilha preenchida à mão (1 página)
+### 4.4 O catálogo em JSON (meia página)
 
-- Quantos erros o validador encontrou na planilha real **antes da correção**, separados por tipo de erro (uma tabela).
-- Comente quais erros apareceram e quais **não** apareceram, e por quê. Lembre que as colunas de lista tinham menu suspenso no Google Planilhas: se não houve erro nelas, a explicação é a trava, e isso mostra que **prevenir na entrada** e **validar depois** são complementares.
-- Os prints do validador antes (com erros) e depois (0 erros) podem ser figuras.
+O catálogo convertido para JSON pelo conversor do colega e conferido pelo verificador dele (`Diferenças: 0`). Uma figura com uma narrativa no CSV ao lado da mesma narrativa no JSON mostra o resultado melhor que um parágrafo.
 
-### 4.5 Avaliação do validador com dados fictícios (1 página)
+### 4.5 Limitações (1 parágrafo)
 
-- Uma tabela: para as bases de 100 e de 1.000 narrativas, quantos erros foram inseridos, quantos foram detectados e a taxa de detecção.
-- Se algum erro não foi detectado (ou se o validador apontou algo que não estava no gabarito), explique o caso e o que foi corrigido.
-- O teste do conversor com 1.000 narrativas sem erros: mostra que o processo funciona com um acervo bem maior que o catálogo atual.
-
-### 4.6 Limitações (meia página)
-
-Seja honesto, porque a banca valoriza isso: o catálogo tem 20 narrativas (é uma amostra, não o acervo do RN); cada narrativa está representada só por trechos curtos; a classificação de `tipo` e de `publico` foi feita por uma pessoa só; o validador não confere se o município existe nem se a mesorregião corresponde ao município (se isso não tiver sido feito); os dados fictícios têm só quatro tipos de erro; o texto integral ficou de fora.
+O catálogo tem 20 narrativas (é uma amostra, não o acervo do RN); cada narrativa está representada só por trechos curtos; a classificação de `tipo` e de `publico` foi feita por uma pessoa só; o validador não confere a coluna `texto` (os trechos e as aspas) nem se o município existe.
 
 ### Entrega
 
-- [ ] Seções 4.1 a 4.6
+- [ ] Seções 4.1 a 4.5
 - [ ] Todas as tabelas e figuras com legenda em cima, fonte embaixo, citadas no texto antes de aparecer
 - [ ] Os números do texto conferem com os arquivos de `resultados/`
 - [ ] Comentários da Entrega 2 resolvidos
-- [ ] Versão nomeada e aviso na *issue* #6
+- [ ] Versão nomeada e aviso no grupo
 
 ---
 
 <a id="entrega-4"></a>
 # Entrega 4 - Conclusão, Resumo, Título e revisão final (prazo: 10/12)
-
-**Issue:** #6 (a mesma da Entrega 3)
 
 ### 5 CONCLUSÃO (até quarta, 09/12; 1 a 2 páginas)
 
@@ -371,9 +350,9 @@ Releia a seção "Conclusão" de [`docs/orientacoes_escrita_tcc.md`](orientacoes
 
 1. retoma o problema e a pergunta do trabalho em um parágrafo;
 2. retoma **cada objetivo específico**, na ordem, dizendo como foi cumprido e qual o resultado principal (um parágrafo curto para cada, ou um parágrafo para todos);
-3. responde à pergunta, com base nos números;
-4. diz qual a contribuição para o projeto Narrativas (o primeiro conjunto de dados do acervo, o formato documentado, o validador e o gerador que outros trabalhos podem usar);
-5. aponta os **trabalhos futuros**: carregar o JSON no banco da plataforma quando o cadastro de narrativas existir; ampliar o catálogo para as mesorregiões com menos registros; incluir o texto integral das narrativas em domínio público; conferir o município e a mesorregião com a lista do IBGE no validador; uma tela de cadastro na própria plataforma que use as mesmas regras do validador.
+3. responde à pergunta, com base no que foi feito;
+4. diz qual a contribuição para o projeto Narrativas (o primeiro conjunto de dados do acervo, o formato documentado e os programas que outros trabalhos podem usar);
+5. aponta os **trabalhos futuros**: carregar o JSON no banco da plataforma quando o cadastro de narrativas existir; ampliar o catálogo para as mesorregiões com menos registros; incluir o texto integral das narrativas em domínio público; conferir no validador a coluna `texto`, o município e a mesorregião (com a lista do IBGE); uma tela de cadastro na própria plataforma que use as mesmas regras do validador.
 
 O seu `docs/diario.md` ajuda aqui: o que deu errado e o que você aprendeu em cada sprint.
 
@@ -403,7 +382,7 @@ O título é a última coisa a ser definida. Ele precisa dizer **o que** foi fei
 - [ ] Nenhuma frase copiada de fonte sem aspas e referência
 - [ ] Os números do Resumo, dos Resultados e da Conclusão são os mesmos
 - [ ] Todos os comentários resolvidos
-- [ ] Versão nomeada `Entrega 4 - Versão final - 10/12` e aviso na *issue* #6
+- [ ] Versão nomeada `Entrega 4 - Versão final - 10/12` e aviso no grupo
 
 ---
 

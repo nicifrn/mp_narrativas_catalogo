@@ -1,6 +1,6 @@
-# Plano de desenvolvimento - Aluno 2: gerador de narrativas fictícias
+# Plano de desenvolvimento - Gleidson: gerador de narrativas fictícias
 
-**Aluno:** Aluno 2 (@aluno2) - Técnico Integrado em Informática
+**Aluno:** Gleidson (@gleidsonxsz) - Técnico Integrado em Informática
 
 **Orientador:** Prof. Bruno Gomes (@brunogomesifrn) - NIC/IFRN
 
@@ -10,7 +10,7 @@
 
 **Período:** 23/11/2026 a 10/12/2026. **A sua entrega principal é na quinta, 03/12.**
 
-> Leia este documento inteiro antes de começar. Ele tem tudo o que você precisa: o que programar, em que ordem, com quais comandos e onde pesquisar.
+> Leia este documento inteiro antes de começar. Ele tem tudo o que você precisa: o que programar, em que ordem, com quais comandos e onde pesquisar. **Não há *issues* no GitHub: este documento é o seu roteiro.** Siga as sprints na ordem e marque as caixas da "Entrega da sprint" à medida que for terminando.
 
 ---
 
@@ -29,7 +29,7 @@
 <a id="ideia"></a>
 ## 1. O que você vai fazer
 
-O Ítalo está montando uma planilha com 20 narrativas populares reais do Rio Grande do Norte para o acervo da plataforma Narrativas, do IFRN. O Aluno 1 está programando um **validador**, que confere a planilha e aponta os erros.
+O Ítalo está montando uma planilha com 20 narrativas populares reais do Rio Grande do Norte para o acervo da plataforma Narrativas, do IFRN, e programando um **validador**, que confere a planilha e aponta os erros. O Samuel está programando o **conversor**, que transforma a planilha em JSON.
 
 Para saber se o validador funciona de verdade, é preciso testá-lo com **muitas** planilhas, e com erros que a gente **já sabe onde estão**. Com 20 narrativas reais isso não dá. **É aí que entra você.**
 
@@ -60,18 +60,20 @@ Gabarito: dados\fake\fake_100_gabarito.csv
 
 | Quem | Faz | Arquivos |
 |---|---|---|
-| Ítalo | Planilha com narrativas reais, conversor para JSON, estatísticas, integração e o RCC | os do plano dele |
-| Aluno 1 | Validador | `scripts/validar.py` e `dados/teste_validador.csv` |
-| **Você (Aluno 2)** | **Gerador de narrativas fictícias** | **`scripts/gerar_fake.py`** |
+| Ítalo | Planilha com narrativas reais, validador, estatísticas, integração e o RCC | os do plano dele |
+| Samuel | Conversor de CSV para JSON e verificador do JSON | `scripts/converter.py`, `scripts/verificar_json.py` e os arquivos de teste dele |
+| **Você (Gleidson)** | **Gerador de narrativas fictícias** | **`scripts/gerar_fake.py`** |
 
 **Mexa só no seu arquivo.** Assim ninguém atrapalha ninguém no Git. Se precisar de outra coisa no repositório, peça ao Ítalo.
+
+**O seu gerador ajuda os dois colegas:** o Samuel usa as suas planilhas **sem erros** para testar o conversor, e o Ítalo usa as planilhas **com erros** para testar o validador.
 
 ---
 
 <a id="formato"></a>
 ## 2. O formato da planilha
 
-Este formato é o **contrato** da equipe: você, o Ítalo e o Aluno 1 usam exatamente estes nomes, nesta ordem. Ele não muda. O Ítalo publica a explicação detalhada de cada coluna em `docs/formato_planilha.md` até 24/11, mas você já pode começar com a tabela abaixo.
+Este formato é o **contrato** da equipe: você, o Ítalo e o Samuel usam exatamente estes nomes, nesta ordem. Ele não muda. O Ítalo publica a explicação detalhada de cada coluna em `docs/formato_planilha.md` até 24/11, mas você já pode começar com a tabela abaixo.
 
 ### 2.1 As colunas
 
@@ -100,14 +102,13 @@ Este formato é o **contrato** da equipe: você, o Ítalo e o Aluno 1 usam exata
 
 ### 2.3 Os erros que o gerador insere
 
-O seu gerador insere **quatro tipos** de erro, sempre **um erro só por linha**:
+O seu gerador insere **três tipos** de erro, sempre **um erro só por linha**:
 
 | Código | O que o gerador faz | Em quais colunas |
 |---|---|---|
 | `vazio` | apaga o valor de uma coluna obrigatória | sorteia uma entre `titulo`, `tipo`, `publico`, `municipio`, `mesorregiao`, `texto`, `fonte`, `licenca` (o `id` fica de fora) |
 | `nao_inteiro` | coloca um texto que não é número no ano | `ano_fonte` |
 | `fora_da_lista` | coloca um valor que não está na lista | sorteia uma entre `tipo`, `publico`, `mesorregiao`, `licenca` |
-| `sem_aspas` | tira as aspas dos trechos | `texto` |
 
 **O gabarito** é um CSV com este formato, uma linha por erro inserido:
 
@@ -118,18 +119,18 @@ linha,coluna,erro
 12,tipo,fora_da_lista
 ```
 
-Os códigos são exatamente os da tabela: minúsculas, sem acento, com `_`. O validador do Aluno 1 grava o relatório dele no mesmo formato, e o Ítalo compara os dois arquivos. **Se você escrever `Vazio` ou `campo vazio`, a comparação falha.**
+Os códigos são exatamente os da tabela: minúsculas, sem acento, com `_`. O validador do Ítalo grava o relatório dele no mesmo formato, e ele compara os dois arquivos. **Se você escrever `Vazio` ou `campo vazio`, a comparação falha.**
 
 ---
 
 <a id="cronograma"></a>
 ## 3. Cronograma
 
-| Sprint | Período | O que você faz | *Issue* |
-|---|---|---|---|
-| 1 | 23/11 a 26/11 | Ambiente, Git, estudo dos módulos `random` e `csv`, gerador de narrativas **corretas** | #10 |
-| 2 | 27/11 a 03/12 | Quantidade pelo comando, semente, erros de propósito e gabarito. **Entrega: 03/12** | #11 |
-| 3 | 04/12 a 10/12 | Ajustes que o Ítalo ou eu pedirmos depois da integração | #12 |
+| Sprint | Período | O que você faz |
+|---|---|---|
+| 1 | 23/11 a 26/11 | Ambiente, Git, estudo dos módulos `random` e `csv`, gerador de narrativas **corretas**. **PR até 26/11** |
+| 2 | 27/11 a 03/12 | Quantidade pelo comando, semente, erros de propósito e gabarito. **Entrega: 03/12** |
+| 3 | 04/12 a 10/12 | Ajustes que o Ítalo ou eu pedirmos depois da integração |
 
 ---
 
@@ -146,11 +147,11 @@ Os códigos são exatamente os da tabela: minúsculas, sem acento, com `_`. O va
 
 As suas *branches*:
 
-| Sprint | *Branch* | *Issue* |
-|---|---|---|
-| 1 | `feature/gerador-base` | #10 |
-| 2 | `feature/gerador-erros` | #11 |
-| 3 | `fix/gerador-ajustes` | #12 |
+| Sprint | *Branch* |
+|---|---|
+| 1 | `feature/gerador-base` |
+| 2 | `feature/gerador-erros` |
+| 3 | `fix/gerador-ajustes` |
 
 ### 4.2 Os comandos do dia a dia
 
@@ -191,22 +192,22 @@ Em português, curtas, com o verbo no presente e um prefixo:
 
 1. `git status` deve dizer `nothing to commit, working tree clean` (os arquivos de `dados/fake/` podem aparecer como *untracked*; tudo bem, eles não vão).
 2. No GitHub, abra o repositório. Clique em **Compare & pull request** na faixa amarela. Se não aparecer: aba **Pull requests → New pull request**, com **base: `develop`** e **compare: a sua *branch***.
-3. Preencha o modelo: **Objetivo**, **O que foi feito**, **Como testar** (o comando, a saída do terminal e as primeiras linhas do arquivo gerado) e, em **Issue**, `Closes #N` com o número da sua *issue*.
+3. Preencha o modelo: **Sprint**, **Objetivo**, **O que foi feito** e **Como testar** (o comando, a saída do terminal e as primeiras linhas do arquivo gerado).
 4. Em **Reviewers**, marque `brunogomesifrn` e `italogomees`.
-5. Na *issue*, comente: `@brunogomesifrn @italogomees PR #X pronto para revisão`.
+5. No grupo da equipe, avise: `PR #X pronto para revisão`.
 
-**Você não faz o *merge*.** Se pedirmos ajustes, faça na mesma *branch*: o PR se atualiza sozinho.
+**Você não faz o *merge*.** Se pedirmos ajustes (nos comentários do PR), faça na mesma *branch*: o PR se atualiza sozinho.
 
 ### 4.5 Quando travar
 
-**Travou mais de 40 minutos no mesmo erro? Pare e peça ajuda.** Comente na sua *issue*, me marcando, com: o que você estava tentando fazer, o comando que rodou e **a mensagem de erro inteira, copiada e colada**.
+**Travou mais de 40 minutos no mesmo erro? Pare e peça ajuda.** Mande mensagem no grupo da equipe, me marcando, com: o que você estava tentando fazer, o comando que rodou e **a mensagem de erro inteira, copiada e colada**.
 
 ---
 
 <a id="sprint-1"></a>
 # Sprint 1: 23/11 a 26/11 - Ambiente e gerador de narrativas corretas
 
-**Branch:** `feature/gerador-base` · **Issue:** #10 · **PR até:** quinta, 26/11
+**Branch:** `feature/gerador-base` · **PR até:** quinta, 26/11
 
 **O que você vai entregar:** um gerador que cria `dados/fake/fake_20.csv` com 20 narrativas fictícias **sem nenhum erro**, no formato da [seção 2](#formato).
 
@@ -381,9 +382,9 @@ Em português, curtas, com o verbo no presente e um prefixo:
 
     > **Não abra o CSV no Excel.** O Excel do Windows estraga os acentos. Para ver como tabela, faça o upload no Google Planilhas (**Arquivo → Importar → Upload**).
 
-12. Se o validador do Aluno 1 já estiver na `develop`, teste com ele (se ainda não estiver, pule): `python scripts\validar.py dados\fake\fake_20.csv`. Ele deve dizer **0 erros**. Se apontar algum, abra a linha indicada no `fake_20.csv` e compare o valor com as regras da [seção 2](#formato): se o valor estiver fora das regras, corrija o gerador; se estiver dentro das regras, comente na *issue* #8 do Aluno 1 com o número da linha, a coluna e o valor.
+12. **Por que "sem nenhum erro" importa:** a partir de sexta, 27/11, o Samuel usa o seu `fake_20.csv` para testar o conversor dele. Um valor fora das regras (por exemplo, um ano que não é número) faz o conversor parar. Confira a planilha com cuidado antes do PR.
 
-13. *Commit*, envio e PR com `Closes #10` até **quinta, 26/11**. Em **Como testar**, cole a saída do terminal e as 5 primeiras linhas do `fake_20.csv`.
+13. *Commit*, envio e PR até **quinta, 26/11**. Em **Como testar**, cole a saída do terminal e as 5 primeiras linhas do `fake_20.csv`.
 
 ### Como saber que deu certo
 
@@ -395,7 +396,7 @@ Em português, curtas, com o verbo no presente e um prefixo:
 
 - [ ] `scripts/gerar_fake.py` gerando 20 narrativas corretas em `dados/fake/fake_20.csv`
 - [ ] Listas completas, com 15 municípios conferidos no IBGE
-- [ ] PR para a `develop` com `Closes #10`, até **26/11**
+- [ ] PR para a `develop` até **26/11**
 
 ### Erros comuns
 
@@ -409,7 +410,7 @@ Em português, curtas, com o verbo no presente e um prefixo:
 <a id="sprint-2"></a>
 # Sprint 2: 27/11 a 03/12 - Erros de propósito e gabarito
 
-**Branch:** `feature/gerador-erros` · **Issue:** #11 · **PR até:** quinta, 03/12
+**Branch:** `feature/gerador-erros` · **PR até:** quinta, 03/12
 
 **O que você vai entregar:** o gerador completo: recebe a quantidade no comando, usa semente fixa, insere erros em cerca de 10% das linhas e grava o gabarito.
 
@@ -448,7 +449,7 @@ Em português, curtas, com o verbo no presente e um prefixo:
 
    Chame `random.seed(SEMENTE)` **uma vez**, no começo da execução, antes de gerar a primeira narrativa. Rode duas vezes com a mesma quantidade e confira que os arquivos saem **iguais** (no VS Code: selecione os dois arquivos no explorador com `Ctrl + clique`, botão direito → **Compare Selected**).
 
-   O Ítalo vai mudar a `TAXA_ERRO` para `0` em um teste dele: com `0`, o gerador tem de gerar a planilha **sem nenhum erro** e o gabarito só com o cabeçalho. Deixe o programa funcionando para qualquer valor entre 0 e 1.
+   O Samuel pode mudar a `TAXA_ERRO` para `0` em um teste do conversor: com `0`, o gerador tem de gerar a planilha **sem nenhum erro** e o gabarito só com o cabeçalho. Deixe o programa funcionando para qualquer valor entre 0 e 1.
 
 4. **Os valores errados**, também em constantes:
 
@@ -469,23 +470,19 @@ Em português, curtas, com o verbo no presente e um prefixo:
 
    ```python
    def inserir_erro(narrativa):
-       tipo_erro = random.choice(["vazio", "nao_inteiro", "fora_da_lista", "sem_aspas"])
+       tipo_erro = random.choice(["vazio", "nao_inteiro", "fora_da_lista"])
 
        if tipo_erro == "vazio":
            coluna = random.choice(OBRIGATORIAS_PARA_APAGAR)
            narrativa[coluna] = ""
        elif tipo_erro == "nao_inteiro":
            ...
-       elif tipo_erro == "fora_da_lista":
-           ...
        else:
-           # sem_aspas: tire todas as aspas do texto (pesquise o método replace)
+           # fora_da_lista
            ...
 
        return coluna, tipo_erro
    ```
-
-   Para o `sem_aspas`, o método `replace` resolve em uma linha: `'"Um." | "Dois."'.replace('"', "")` dá `Um. | Dois.`. Teste no terminal do Python. Os dois trechos ficam sem aspas, e o validador registra **um** erro para a coluna `texto`, que é exatamente o que vai no gabarito.
 
    O dicionário é alterado "por dentro" da função: quando ela termina, a narrativa que estava na lista já está estragada. Pesquise "python dicionário mutável função" se isso parecer estranho.
 
@@ -546,20 +543,7 @@ Em português, curtas, com o verbo no presente e um prefixo:
 
     Na base de 1.000, o número de erros deve ficar **perto de 100** (10%). Não precisa ser exatamente 100: é sorteio. Se der muito longe (30 ou 300), há algo errado na conta.
 
-12. **Se o validador do Aluno 1 já estiver na `develop`**, teste com ele (se ainda não estiver, pule):
-
-    ```
-    git checkout develop
-    git pull
-    git checkout feature/gerador-erros
-    git merge develop
-    python scripts\gerar_fake.py 100
-    python scripts\validar.py dados\fake\fake_100.csv
-    ```
-
-    Abra o seu gabarito e o relatório do validador (`resultados\erros_fake_100.csv`) lado a lado (botão direito na aba → **Split Right**). Devem ser iguais. Se não forem, abra a linha da diferença no `fake_100.csv` e compare o valor com as regras da [seção 2](#formato): se o valor gerado estiver fora das regras e não estiver no gabarito, o erro é do gerador, e você corrige; se o gabarito estiver certo e o validador não encontrou o erro (ou encontrou um que não existe), comente na *issue* #8 do Aluno 1 com o número da linha, a coluna e o valor.
-
-13. *Commit* a cada parte que funcionar (`feat: recebe a quantidade pelo comando`, `feat: insere erros de propósito e grava gabarito`...), envio e PR com `Closes #11` até **quinta, 03/12**. Em **Como testar**, cole a saída do terminal para 100 e 1.000 narrativas e o resultado da conferência à mão do passo 10.
+12. *Commit* a cada parte que funcionar (`feat: recebe a quantidade pelo comando`, `feat: insere erros de propósito e grava gabarito`...), envio e PR até **quinta, 03/12**. Em **Como testar**, cole a saída do terminal para 100 e 1.000 narrativas e o resultado da conferência à mão do passo 10.
 
 ### Como saber que deu certo
 
@@ -572,10 +556,10 @@ Em português, curtas, com o verbo no presente e um prefixo:
 
 - [ ] Quantidade recebida pelo comando, com mensagem de uso
 - [ ] `SEMENTE` e `TAXA_ERRO` em constantes, com o resultado repetível
-- [ ] Os 4 tipos de erro: `vazio`, `nao_inteiro`, `fora_da_lista`, `sem_aspas`
+- [ ] Os 3 tipos de erro: `vazio`, `nao_inteiro`, `fora_da_lista`
 - [ ] Gabarito em `dados/fake/fake_<N>_gabarito.csv`, com a numeração de linhas certa
 - [ ] Conferência à mão do gabarito com 20 narrativas
-- [ ] PR para a `develop` com `Closes #11`, até **03/12**
+- [ ] PR para a `develop` até **03/12**
 
 ### Erros comuns
 
@@ -589,13 +573,13 @@ Em português, curtas, com o verbo no presente e um prefixo:
 <a id="sprint-3"></a>
 # Sprint 3: 04/12 a 10/12 - Ajustes
 
-**Branch:** `fix/gerador-ajustes` · **Issue:** #12
+**Branch:** `fix/gerador-ajustes`
 
-Na sexta, 04/12, o Ítalo roda o seu gerador e o validador do Aluno 1 e compara o gabarito com o relatório. Se aparecer algum problema (linha errada no gabarito, valor "errado" que na verdade está certo, valor "certo" que na verdade está errado), ele comenta na sua *issue* #12.
+Na sexta, 04/12, o Ítalo roda o seu gerador e o validador dele e compara o gabarito com o relatório. Se aparecer algum problema (linha errada no gabarito, valor "errado" que na verdade está certo, valor "certo" que na verdade está errado), ele avisa você no grupo da equipe, com a linha, a coluna e o valor.
 
 ### Passo a passo
 
-1. Acompanhe a *issue* #12 de sexta a terça. Se não houver nenhum pedido de ajuste até **terça, 08/12**, comente na *issue*: `Nenhum ajuste pedido` e eu fecho.
+1. Acompanhe o grupo da equipe de sexta a terça. Se não houver nenhum pedido de ajuste até **terça, 08/12**, avise: `Nenhum ajuste pedido no gerador`.
 
 2. Se houver pedido de ajuste:
 
@@ -605,8 +589,8 @@ Na sexta, 04/12, o Ítalo roda o seu gerador e o validador do Aluno 1 e compara 
    git checkout -b fix/gerador-ajustes
    ```
 
-   Corrija, gere de novo, confira à mão como na Sprint 2 (passo 10), faça o *commit* e abra o PR com `Closes #12` até **terça, 08/12**.
+   Corrija, gere de novo, confira à mão como na Sprint 2 (passo 10), faça o *commit* e abra o PR até **terça, 08/12**.
 
 ### Entrega da sprint
 
-- [ ] Ajustes pedidos na *issue* #12 resolvidos, com PR e `Closes #12`, até **08/12**; ou comentário `Nenhum ajuste pedido`
+- [ ] Ajustes pedidos resolvidos, com PR, até **08/12**; ou aviso `Nenhum ajuste pedido no gerador` no grupo

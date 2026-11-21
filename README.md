@@ -1,6 +1,6 @@
 # Catálogo estruturado de narrativas populares do RN
 
-Conjunto de dados de narrativas populares do Rio Grande do Norte (lendas, contos, causos, mitos e cordéis) para o acervo do projeto **Narrativas** (NIC/IFRN). O resultado é uma planilha com narrativas reais, de fontes citáveis, convertida para JSON, com o formato documentado e ferramentas que conferem a qualidade dos dados.
+Conjunto de dados de narrativas populares do Rio Grande do Norte (lendas, contos, causos, mitos e cordéis) para o acervo do projeto **Narrativas** (NIC/IFRN). O resultado é uma planilha com narrativas reais, de fontes citáveis, conferida por um validador e convertida para JSON, com o formato documentado.
 
 **Orientador:** Prof. Bruno Gomes (@brunogomesifrn) - NIC/IFRN
 
@@ -10,25 +10,25 @@ Conjunto de dados de narrativas populares do Rio Grande do Norte (lendas, contos
 
 ## A equipe e as tarefas
 
-Três alunos trabalham em paralelo. O que liga o trabalho dos três é o **formato da planilha**: o Ítalo preenche esse formato, o Aluno 1 confere esse formato e o Aluno 2 gera dados nesse formato. O formato está fechado desde o início, então **ninguém espera por ninguém**.
+Três alunos trabalham em paralelo. O que liga o trabalho dos três é o **formato da planilha**: o Ítalo preenche e valida esse formato, o Samuel converte esse formato para JSON e o Gleidson gera dados fictícios nesse formato. O formato está fechado desde o início, então **ninguém espera por ninguém**.
 
 | Quem | O que faz | Plano de trabalho |
 |---|---|---|
-| **Ítalo** (@italogomees) | Define o formato da planilha, preenche com narrativas reais do RN, converte para JSON, gera as estatísticas, integra o trabalho dos colegas e escreve o RCC | [Plano de desenvolvimento](docs/01_italo_v2_narrativas_desenvolvimento.md) · [Plano de escrita do RCC](docs/01_italo_v2_narrativas_escrita.md) |
-| **Aluno 1** (@aluno1) | Programa o validador da planilha (`scripts/validar.py`): campos vazios, números inválidos, `id` repetido, valores fora da lista | [Plano do Aluno 1](docs/01_italo_v2_aluno_1.md) |
-| **Aluno 2** (@aluno2) | Programa o gerador de narrativas fictícias (`scripts/gerar_fake.py`), com opção de inserir erros de propósito para testar o validador | [Plano do Aluno 2](docs/01_italo_v2_aluno_2.md) |
+| **Ítalo** (@italogomees) | Define o formato da planilha, preenche com narrativas reais do RN, programa o validador da planilha (`scripts/validar.py`) e as estatísticas, integra o trabalho dos colegas e escreve o RCC | [Plano de desenvolvimento](docs/01_italo_v2_narrativas_desenvolvimento.md) · [Plano de escrita do RCC](docs/01_italo_v2_narrativas_escrita.md) |
+| **Samuel** (@samuelmarinho10) | Programa o conversor de CSV para JSON (`scripts/converter.py`) e o verificador, que confere se o JSON saiu igual ao CSV (`scripts/verificar_json.py`) | [Plano do Samuel](docs/01_italo_v2_aluno_1.md) |
+| **Gleidson** (@gleidsonxsz) | Programa o gerador de narrativas fictícias (`scripts/gerar_fake.py`), com opção de inserir erros de propósito para testar o validador | [Plano do Gleidson](docs/01_italo_v2_aluno_2.md) |
 
 **Cada um mexe só nos seus arquivos.** No final, integrar é **rodar** os programas em sequência, e não juntar código.
 
-> **Comece por aqui:** leia o **seu** plano inteiro na segunda, 23/11, antes de começar. Ele tem o que programar, em que ordem, com quais comandos e onde pesquisar. As *issues* do GitHub resumem cada sprint; se uma *issue* e o plano parecerem dizer coisas diferentes, **vale o plano**.
+> **Comece por aqui:** leia o **seu** plano inteiro na segunda, 23/11, antes de começar. **Não há *issues*: o plano é o seu roteiro.** Ele tem o que programar, em que ordem, com quais comandos e onde pesquisar. Siga as sprints na ordem e marque as caixas da "Entrega da sprint" à medida que for terminando.
 
 ## Cronograma resumido
 
-| Sprint | Período | Ítalo | Aluno 1 | Aluno 2 |
+| Sprint | Período | Ítalo | Samuel | Gleidson |
 |---|---|---|---|---|
-| 1 | 23/11 a 26/11 | Formato documentado e estrutura do repositório (**PR até 24/11**); 10 primeiras narrativas | Ambiente, arquivo de teste e primeira versão do validador | Ambiente e gerador de narrativas corretas |
-| 2 | 27/11 a 03/12 | 20 narrativas, `converter.py` e `estatisticas.py` | Validador completo (**entrega: 03/12**) | Erros de propósito e gabarito (**entrega: 03/12**) |
-| 3 | 04/12 a 10/12 | Integração (04/12), `comparar.py`, README final; Resultados, Conclusão, Resumo e Título | Ajustes apontados pelo Ítalo | Ajustes apontados pelo Ítalo |
+| 1 | 23/11 a 26/11 | Formato documentado e estrutura do repositório (**PR até 24/11**); 10 primeiras narrativas | Arquivo de teste e primeira versão do conversor (**PR até 26/11**) | Gerador de narrativas corretas (**PR até 26/11**) |
+| 2 | 27/11 a 03/12 | 20 narrativas, `validar.py` e `estatisticas.py` (**PR até 03/12**) | Conversor completo e verificador (**PR até 03/12**) | Erros de propósito e gabarito (**PR até 03/12**) |
+| 3 | 04/12 a 10/12 | Integração (04/12), `resumo.md` e README final (**PR até 07/12**); Resultados, Conclusão, Resumo e Título | Ajustes pedidos depois da integração | Ajustes pedidos depois da integração |
 
 Os detalhes e as datas de cada entrega estão nos planos.
 
@@ -42,7 +42,8 @@ Os detalhes e as datas de cada entrega estão nos planos.
 
 - A *branch* padrão é a `develop`. Cada aluno cria a sua `feature/...` a partir dela e abre um *pull request* (PR) para a `develop` ao final de cada sprint.
 - Ninguém faz *commit* direto na `main` nem na `develop`: tudo entra por PR, revisado pelo orientador.
-- No PR, preencha o modelo (objetivo, o que foi feito, como testar) e escreva `Closes #N` com o número da sua *issue*.
+- No PR, preencha o modelo (sprint, objetivo, o que foi feito, como testar) e avise no grupo da equipe.
+- Dúvidas, travamentos e pedidos de ajuste vão para o grupo da equipe.
 
 O passo a passo completo (comandos, mensagens de *commit*, o que fazer quando travar) está na seção "Como trabalhar no repositório" de cada plano.
 
@@ -53,9 +54,9 @@ As pastas `dados/`, `scripts/` e `resultados/` são criadas pelo Ítalo na Sprin
 ```
 mp_narrativas_catalogo/
 ├── .github/pull_request_template.md
-├── dados/          ← modelo.csv, narrativas.csv, narrativas.json, teste_validador.csv
-├── scripts/        ← validar.py, gerar_fake.py, converter.py, estatisticas.py, comparar.py
-├── resultados/     ← gráficos, tabelas e relatórios de erros
+├── dados/          ← modelo.csv, narrativas.csv, narrativas.json e os arquivos de teste
+├── scripts/        ← validar.py, estatisticas.py, converter.py, verificar_json.py, gerar_fake.py
+├── resultados/     ← gráficos, estatísticas, relatórios de erros e resumo
 ├── docs/           ← planos de trabalho, formato da planilha e documentos de apoio
 ├── .gitignore
 ├── requirements.txt
