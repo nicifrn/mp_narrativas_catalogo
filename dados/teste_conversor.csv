@@ -1,0 +1,6 @@
+id,titulo,tipo,publico,municipio,mesorregiao,texto,palavras_chave,fonte,url_fonte,ano_fonte,licenca
+1,O Lobisomem do Sertão, lenda ,	livre,	Caicó,oeste,"""Nas noites de lua cheia, um homem percorria as estradas."" | ""Dizem que ele se transformava em lobisomem.""",lobisomem; sertão,Relato popular,https://exemplo.com/lobisomem,1952,desconhecida
+2,A menina da Lagoa, conto ,infantil,Natal,leste,"""Uma menina encontrou uma lagoa escondida."" | ""Ao tocar na água, ouviu uma voz misteriosa.""",água; mistério,Coletânea de histórias populares,,,desconhecida
+3,O Vaqueiro Encantado, causo ,adulto,Mossoró,oeste,"""Um vaqueiro desapareceu durante a noite."" | ""Na manhã seguinte, seu cavalo voltou sozinho.""",,Memória oral da comunidade,https://exemplo.com/vaqueiro,1980,desconhecida
+4,O Encanto do Rio, mito ,juvenil,Assú,central,"""Um rio guardava um segredo antigo."" | ""Quem encontrasse o encanto teria sua sorte transformada.""",rio ; encantamento;,Relato de moradores,,1975,cc_by
+5,"A Cobra, o Rio e a Lua", lenda ,livre,Canguaretama,leste,“Um.” | “Dois.”,cobra; lua,Registro fictício para teste,https://exemplo.com/cobra,2001,dominio_publico
