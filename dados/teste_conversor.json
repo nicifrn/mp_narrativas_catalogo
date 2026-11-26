@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "titulo": "O Lobisomem do Sertão",
+    "tipo": "lenda",
+    "publico": "livre",
+    "municipio": "Caicó",
+    "mesorregiao": "oeste",
+    "texto": "\"Nas noites de lua cheia, um homem percorria as estradas.\" | \"Dizem que ele se transformava em lobisomem.\"",
+    "palavras_chave": "lobisomem; sertão",
+    "fonte": "Relato popular",
+    "url_fonte": "https://exemplo.com/lobisomem",
+    "ano_fonte": "1952",
+    "licenca": "desconhecida"
+  },
+  {
+    "id": "2",
+    "titulo": "A menina da Lagoa",
+    "tipo": "conto",
+    "publico": "infantil",
+    "municipio": "Natal",
+    "mesorregiao": "leste",
+    "texto": "\"Uma menina encontrou uma lagoa escondida.\" | \"Ao tocar na água, ouviu uma voz misteriosa.\"",
+    "palavras_chave": "água; mistério",
+    "fonte": "Coletânea de histórias populares",
+    "url_fonte": "",
+    "ano_fonte": "",
+    "licenca": "desconhecida"
+  },
+  {
+    "id": "3",
+    "titulo": "O Vaqueiro Encantado",
+    "tipo": "causo",
+    "publico": "adulto",
+    "municipio": "Mossoró",
+    "mesorregiao": "oeste",
+    "texto": "\"Um vaqueiro desapareceu durante a noite.\" | \"Na manhã seguinte, seu cavalo voltou sozinho.\"",
+    "palavras_chave": "",
+    "fonte": "Memória oral da comunidade",
+    "url_fonte": "https://exemplo.com/vaqueiro",
+    "ano_fonte": "1980",
+    "licenca": "desconhecida"
+  },
+  {
+    "id": "4",
+    "titulo": "O Encanto do Rio",
+    "tipo": "mito",
+    "publico": "juvenil",
+    "municipio": "Assú",
+    "mesorregiao": "central",
+    "texto": "\"Um rio guardava um segredo antigo.\" | \"Quem encontrasse o encanto teria sua sorte transformada.\"",
+    "palavras_chave": "rio ; encantamento;",
+    "fonte": "Relato de moradores",
+    "url_fonte": "",
+    "ano_fonte": "1975",
+    "licenca": "cc_by"
+  },
+  {
+    "id": "5",
+    "titulo": "A Cobra, o Rio e a Lua",
+    "tipo": "lenda",
+    "publico": "livre",
+    "municipio": "Canguaretama",
+    "mesorregiao": "leste",
+    "texto": "“Um.” | “Dois.”",
+    "palavras_chave": "cobra; lua",
+    "fonte": "Registro fictício para teste",
+    "url_fonte": "https://exemplo.com/cobra",
+    "ano_fonte": "2001",
+    "licenca": "dominio_publico"
+  }
+]
