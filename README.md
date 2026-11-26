@@ -37,6 +37,7 @@ Os detalhes e as datas de cada entrega estão nos planos.
 - [Projeto Narrativas](docs/projeto_narrativas.md): resumo do projeto pai.
 - [Orientações de escrita do TCC](docs/orientacoes_escrita_tcc.md): estrutura, citações, referências, figuras e tabelas (ABNT). Vale para o RCC do Ítalo.
 - [Protótipos da plataforma](docs/prototipos/): telas do portal. A tela [`narrativa_detalhes.png`](docs/prototipos/narrativa_detalhes.png) mostra os campos de onde vem a maior parte das colunas da planilha.
+- [Formato da planilha](docs/formato_planilha.md)
 
 ## Como trabalhar no repositório
 
